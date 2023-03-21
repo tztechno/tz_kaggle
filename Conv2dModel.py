@@ -1,6 +1,39 @@
+
+class ConvolutionalNetwork(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.conv1=nn.Conv2d(3,6,3,1)
+        self.conv2=nn.Conv2d(6,16,3,1)
+        self.fc1=nn.Linear(16*54*54,120) 
+        self.fc2=nn.Linear(120,84)
+        self.fc3=nn.Linear(84,20)
+        self.fc4=nn.Linear(20,len(class_names))
+        
+    def forward(self,X):
+        #print(X.shape)  #torch.Size([10, 3, 224, 224]) #which means batch size and image size.
+        X=F.relu(self.conv1(X))
+        X=F.max_pool2d(X,2,2)
+        X=F.relu(self.conv2(X))
+        X=F.max_pool2d(X,2,2)
+        #print(X.shape)  #torch.Size([10, 16, 54, 54])
+        X=X.view(-1,16*54*54)
+        #print(X.shape)  #torch.Size([10, 46656])        
+        X=F.relu(self.fc1(X))
+        X=F.relu(self.fc2(X))
+        X=F.relu(self.fc3(X))
+        X=self.fc4(X)
+        #print(X.shape)  #torch.Size([10, 5] #outputs are of one hot encoding.
+        #print（'-----'*10）
+        return F.log_softmax(X,dim=1)
+
+
+
+#########################################################################
+
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
     return torch.tensor(torch.sum(preds == labels).item() / len(preds))
+
 
   
 class ImageClassificationBase(nn.Module):
@@ -27,7 +60,8 @@ class ImageClassificationBase(nn.Module):
     def epoch_end(self, epoch, result):
         print("Epoch [{}], train_loss: {:.4f}, val_loss: {:.4f}, val_acc: {:.4f}".format(
             epoch, result['train_loss'], result['val_loss'], result['val_acc']))
-        
+ 
+
         
 class CnnModel(ImageClassificationBase):
     def __init__(self):
