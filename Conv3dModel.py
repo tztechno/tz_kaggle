@@ -1,8 +1,6 @@
+
 # torch.nn.Conv3d(in_channels, out_channels, kernel_size, stride=1, padding=0, 
 # dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
-
-
-# sample
 
 # With square kernels and equal stride
 m = nn.Conv3d(16, 33, 3, stride=2)
