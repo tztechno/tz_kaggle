@@ -1,4 +1,18 @@
 
+# torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, 
+# dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
+
+# With square kernels and equal stride
+m = nn.Conv2d(16, 33, 3, stride=2)
+# non-square kernels and unequal stride and with padding
+m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))
+# non-square kernels and unequal stride and with padding and dilation
+m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2), dilation=(3, 1))
+input = torch.randn(20, 16, 50, 100)
+output = m(input)
+
+
+#################################################################
 
 class ConvolutionalNetwork(nn.Module):
     def __init__(self):
