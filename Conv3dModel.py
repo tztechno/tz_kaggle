@@ -53,61 +53,73 @@ print(output_tensor.shape)
 
 
 # other sample
-class Model1(nn.Module):
-    def __init__(self, input_shape):
-        nn.Module.__init__(self)
-        
-        self.input_shape = input_shape
-        
-        self.conv = nn.ModuleList(
-            [nn.BatchNorm3d(self.input_shape[0]),
-             nn.Conv3d(self.input_shape[0], 64, 3, padding=1), 
-             nn.ReLU(), 
-             nn.MaxPool3d(2),
-             nn.Dropout3d(),
-                
-             nn.Conv3d(64, 128, 3, padding=1), 
-             nn.ReLU(), 
-             nn.MaxPool3d(2), 
-             nn.Dropout3d(),
-                
-             nn.Conv3d(128, 256, 3, padding=1), 
-             nn.ReLU(), 
-             nn.MaxPool3d(2),
-             nn.Dropout3d()])
-        
-        #conv_shape = _output_shape(self.input_shape[1:], self.conv)
-        conv_shape = self._infer_shape()
-        
-        self.fc = nn.ModuleList(
-            [nn.Linear(int(conv_shape.prod()), 1024), 
-             nn.ReLU(),
-             nn.Dropout3d(),
-             
-             nn.Linear(1024, 1)])
-        
-        map(_init_fun, self.conv)
-        map(_init_fun, self.fc)
-        
-    def _infer_shape(self):
-        x = torch.randn(tuple([1] + map(int, self.input_shape)))
-        logging.info('Inferring shape for convolutional part...')
-        logging.info(x.shape)
-        
-        for l in self.conv:
-            x = l(x);
-            logging.info("==== " + str(l) + " ====")
-            logging.info(x.shape)
-        
-        return torch.tensor(x.shape)
-    
+class Conv3DNet(nn.Module):
+    """
+    The C3D network.
+    """
+    def __init__(self, pretrained=False):
+        super(Conv3DNet, self).__init__()
+
+        self.conv1 = nn.Conv3d(3, 64, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.pool1 = nn.MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2))
+        self.batch1 = nn.BatchNorm3d(64)
+
+        self.conv2 = nn.Conv3d(64, 128, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.pool2 = nn.MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2))
+        self.batch2 = nn.BatchNorm3d(128)
+
+        self.conv3 = nn.Conv3d(128, 256, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.pool3 = nn.MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2))
+        self.batch3 = nn.BatchNorm3d(256)
+
+        self.conv4 = nn.Conv3d(256, 512, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.pool4 = nn.MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2))
+        self.batch4 = nn.BatchNorm3d(512)
+
+        self.conv5a = nn.Conv3d(512, 256, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.conv5b = nn.Conv3d(256, 256, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.pool5 = nn.MaxPool3d(kernel_size=(2, 2, 2), stride=(2, 2, 2))
+        self.batch5 = nn.BatchNorm3d(256)
+
+        self.conv6a = nn.Conv3d(256, 20, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.conv6b = nn.Conv3d(20, 20, kernel_size=(3, 3, 3), padding=(1, 1, 1))
+        self.pool6 = nn.MaxPool3d(kernel_size=(2, 2, 2), stride=(2, 2, 2))
+        self.batch6 = nn.BatchNorm3d(20)
+
+        self.relu = nn.ReLU()
+        self.flat = Flatten()
+
     def forward(self, x):
-        for l in self.conv:
-            x = l(x)
-        x = x.view(x.size()[0], -1)
-        for l in self.fc:
-            x = l(x)
-        x = torch.sigmoid(x)
-        return x   
-    
-    
+
+        x = self.relu(self.conv1(x))
+        x = self.batch1(self.pool1(x))
+        #print(x.shape)
+
+        x = self.relu(self.conv2(x))
+        x = self.batch2(self.pool2(x))
+        #print(x.shape)
+
+        x = self.relu(self.conv3(x))
+        x = self.batch3(self.pool3(x))
+        #print(x.shape)
+
+        x = self.relu(self.conv4(x))
+        x = self.batch4(self.pool4(x))
+        #print(x.shape)
+
+        x = self.relu(self.conv5a(x))
+        x = self.relu(self.conv5b(x))
+        x = self.batch5(self.pool5(x))
+        #print(x.shape)
+
+        x = self.relu(self.conv6a(x))
+        x = self.relu(self.conv6b(x))
+        x = self.batch6(self.pool6(x))
+        #print(x.shape)
+
+        x = self.flat(x) 
+
+        return 
+
+
+
