@@ -1,6 +1,9 @@
 
+import random
 import cv2
 import matplotlib.pyplot as plt
+
+selected_paths=random.sample(frame_paths,30)
 
 # Create a 3x10 grid of subplots
 fig, axs = plt.subplots(10, 3, figsize=(15, 35))
