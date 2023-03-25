@@ -37,11 +37,4 @@ for i in range(400):
     paths+=[path]
     torch.save(datai,path)
 
-labelset = np.random.choice(labels, size=(400,))
-labels_df = pd.DataFrame(columns=['id','label'])
-labels_df['id']=list(range(400))
-labels_df['label']=labelset
-labels_df.to_csv('labels.csv',index=False)
-display(labels_df[0:5])
-
 ///////////////////////////////////////////
