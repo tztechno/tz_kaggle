@@ -1,4 +1,4 @@
-# create image dataset
+#create_image_data.py
 ///////////////////////////////////////////
 
 N,C,D,H,W = 60,3,10,100,100
