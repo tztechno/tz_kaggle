@@ -23,6 +23,18 @@ dblock = DataBlock(
 # データローダーを作成する
 dls = dblock.dataloaders(path, bs=16)
 
+#########################################
+
+dblock = DataBlock(
+            blocks=(ImageBlock, CategoryBlock),
+            splitter=ColSplitter(),
+            get_x= lambda x: x['path'],
+            get_y= lambda x: x['label'],
+            item_tfms=Resize(224),
+            batch_tfms=aug_transforms()
+)
+
+dls = dblock.dataloaders(data_df, bs=16)
 
 #########################################
 
