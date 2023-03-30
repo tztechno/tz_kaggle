@@ -32,10 +32,10 @@ torch.onnx.export(learn.model, torch.randn(batch_size, *input_shape), "model.onn
 
 # onnxをロードする場合
 import numpy as np
-import onnxruntime
+import onnxruntime as ort
 
 learn = cnn_learner(dls, 'resnet26', metrics=error_rate, path='.', pretrained=False)
-ort_session = onnxruntime.InferenceSession(model_path)
+ort_session = ort.InferenceSession(model_path)
 
 input_name = ort_session.get_inputs()[0].name
 output_names = [output.name for output in ort_session.get_outputs()]
