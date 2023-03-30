@@ -38,7 +38,7 @@ learn = cnn_learner(dls, 'resnet26', metrics=error_rate, path='.', pretrained=Fa
 ort_session = onnxruntime.InferenceSession(model_path)
 ort_state_dict = {}
 for i, name in enumerate(ort_session.get_outputs()):
-    ort_state_dict[name.name] = ort_session.get_outputs()[i].detach().cpu().numpy()
+    ort_state_dict[name.name] = ort_session.get_outputs()[i].numpy()
 learn.model.load_state_dict(ort_state_dict)
 learn.lr_find(suggest_funcs=(valley, slide))
 
