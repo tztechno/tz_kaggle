@@ -50,6 +50,26 @@ learn.lr_find(suggest_funcs=(valley, slide))
 ################################### 
 
 '''
+Describes the model save format.
+
+ONNX format
+In an open source format called Open Neural Network Exchange (ONNX),
+A file format for exchanging and reusing models learned in various frameworks.
+The ONNX format supports a number of major frameworks including Caffe2, PyTorch, TensorFlow, Keras, CNTK.
+
+Pickle format
+A library used for serializing Python objects.
+You can easily save your model because the file size is small and you can save Python objects.
+
+PyTorch format
+A file format specially designed for PyTorch with the extension ".pt".
+It contains all model parameters, architecture and optimization information and is only available within the PyTorch framework.
+
+The ONNX format is suitable for using models across frameworks,
+Pickle format is suitable for storing Python objects.
+The PyTorch format is only available in the PyTorch framework, but it's easiest to save and load models within PyTorch.
+
+
 モデル保存形式について説明します。
 
 ONNX形式
