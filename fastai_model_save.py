@@ -36,9 +36,14 @@ import onnxruntime
 
 learn = cnn_learner(dls, 'resnet26', metrics=error_rate, path='.', pretrained=False)
 ort_session = onnxruntime.InferenceSession(model_path)
+
+input_name = ort_session.get_inputs()[0].name
+output_names = [output.name for output in ort_session.get_outputs()]
 ort_state_dict = {}
-for i, name in enumerate(ort_session.get_outputs()):
-    ort_state_dict[name.name] = ort_session.get_outputs()[i].numpy()
+outputs = ort_session.run(output_names, {input_name: input_tensor})
+for i, name in enumerate(output_names):
+    ort_state_dict[name] = outputs[i]
+    
 learn.model.load_state_dict(ort_state_dict)
 learn.lr_find(suggest_funcs=(valley, slide))
 
