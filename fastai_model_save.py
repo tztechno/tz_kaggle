@@ -48,3 +48,28 @@ learn.model.load_state_dict(ort_state_dict)
 learn.lr_find(suggest_funcs=(valley, slide))
 
 ################################### 
+
+'''
+モデル保存形式について説明します。
+
+ONNX形式
+Open Neural Network Exchange(ONNX)と呼ばれるオープンソース形式で、
+様々なフレームワークで学習したモデルを交換・再利用できるようにするためのファイル形式です。
+ONNX形式は、Caffe2、PyTorch、TensorFlow、Keras、CNTKなど、多数の主要なフレームワークをサポートしています。
+
+Pickle形式
+Pythonオブジェクトの直列化に使われるライブラリーです。
+ファイルサイズが小さく、Pythonのオブジェクトを保存できるので、簡単にモデルを保存できます。
+
+PyTorch形式
+PyTorchのために特別に設計されたファイル形式で、拡張子は".pt"です。
+モデルのパラメーター、アーキテクチャ、最適化の情報をすべて含んでおり、PyTorchフレームワーク内でのみ利用可能です。
+
+ONNX形式は、フレームワークをまたいでのモデルの利用に適しており、
+Pickle形式はPythonオブジェクトの保存に適しています。
+PyTorch形式はPyTorchフレームワークでのみ利用可能ですが、PyTorch内でのモデルの保存と読み込みが最も簡単です。
+
+'''
+
+
+
