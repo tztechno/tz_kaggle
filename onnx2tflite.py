@@ -21,3 +21,5 @@ converter.output_arrays = ["output"]
 # .tfliteファイルに変換する
 tflite_model = converter.convert()
 open("my_model.tflite", "wb").write(tflite_model)
+
+
