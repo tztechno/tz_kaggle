@@ -1,6 +1,8 @@
 ################################### 
 ### first time
 
+from fastai.vision.learner import vision_learner
+
 learn = vision_learner(dls, 'resnet26', metrics=error_rate, path='.').to_fp16()
 learn.lr_find(suggest_funcs=(valley, slide))
 
@@ -10,11 +12,11 @@ torch.save(learn.state_dict(), 'model.pt')
 ################################### 
 ### second time and after
 
-from fastai.vision.learner import cnn_learner
+from fastai.vision.learner import vision_learner
 
 model_path = '/kaggle/input/asl-slice-images-fk0-first-fastai2/model.pt'
 model = torch.load(model_path, map_location=torch.device('cpu'))
-learn = cnn_learner(dls, 'resnet26', pretrained=False) #新しいデータinput
+learn = vision_learner(dls, 'resnet26', pretrained=False) #新しいデータinput
 learn.model.load_state_dict(model) #baseモデルにトレーニング結果を反映
 learn.lr_find(suggest_funcs=(valley, slide))
 
@@ -34,7 +36,7 @@ torch.onnx.export(learn.model, torch.randn(batch_size, *input_shape), "model.onn
 import numpy as np
 import onnxruntime as ort
 
-learn = cnn_learner(dls, 'resnet26', metrics=error_rate, path='.', pretrained=False)
+learn = vision_learner(dls, 'resnet26', metrics=error_rate, path='.', pretrained=False)
 ort_session = ort.InferenceSession(model_path)
 
 input_name = ort_session.get_inputs()[0].name
@@ -70,7 +72,7 @@ Pickle format is suitable for storing Python objects.
 The PyTorch format is only available in the PyTorch framework, but it's easiest to save and load models within PyTorch.
 
 
-モデル保存形式について説明します。
+モデル保存形式について
 
 ONNX形式
 Open Neural Network Exchange(ONNX)と呼ばれるオープンソース形式で、
