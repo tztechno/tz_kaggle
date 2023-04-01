@@ -28,13 +28,13 @@ torch.save(learn.state_dict(), 'model.pt')
 
 learn.save('model')
 #save architechture
-learn2 = load_learner(./'models/model.pth')
+learn2 = load_learner('models/model.pth',dls=dls)
 
 ################################### 
 
 learn.export('model.pkl')
 #save architechture
-learn3 = load_learner(./'model.pkl')
+learn3 = load_learner('model.pkl',dls=dls)
 
 ################################### 
 # onnxで保存する場合
