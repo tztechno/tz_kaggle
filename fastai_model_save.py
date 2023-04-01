@@ -28,13 +28,13 @@ torch.save(learn.state_dict(), 'model.pt')
 
 learn.save('model')
 #save architechture
-learn2 = load_learner('models/model.pth',dls=dls)
+learn = cnn_learner(dls, model_path, metrics=error_rate)
 
 ################################### 
 
 learn.export('model.pkl')
 #save architechture
-learn3 = load_learner('model.pkl',dls=dls)
+learn = cnn_learner(dls, model_path, metrics=error_rate)
 
 ################################### 
 # onnxで保存する場合
