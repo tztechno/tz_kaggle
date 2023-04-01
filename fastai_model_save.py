@@ -8,6 +8,7 @@ learn.lr_find(suggest_funcs=(valley, slide))
 
 learn.fine_tune(3,0.01)  
 torch.save(learn.state_dict(), 'model.pt')
+#not save architechture
 
 ################################### 
 ### second time and after
@@ -16,8 +17,8 @@ from fastai.vision.learner import vision_learner
 
 model_path = '/kaggle/input/asl-slice-images-fk0-first-fastai2/model.pt'
 model = torch.load(model_path, map_location=torch.device('cpu'))
-learn = vision_learner(dls, 'resnet26', pretrained=False) #新しいデータinput
-learn.model.load_state_dict(model) #baseモデルにトレーニング結果を反映
+learn = vision_learner(dls, 'resnet26', pretrained=False)   #アーキテクチャー+新しいデータinput
+learn.model.load_state_dict(model)   #アーキテクチャーににトレーニング結果を反映
 learn.lr_find(suggest_funcs=(valley, slide))
 
 learn.fine_tune(3,0.01)  
@@ -25,6 +26,17 @@ torch.save(learn.state_dict(), 'model.pt')
 
 ################################### 
 
+learn.save('model')
+#save architechture
+learn2 = load_learner(./'models/model.pth')
+
+################################### 
+
+learn.export('model.pkl')
+#save architechture
+learn3 = load_learner(./'model.pkl')
+
+################################### 
 # onnxで保存する場合
 batch_size = 1
 input_shape = (3,128,128)
