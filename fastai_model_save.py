@@ -41,6 +41,7 @@ learn3 = load_learner(./'model.pkl')
 batch_size = 1
 input_shape = (3,128,128)
 torch.onnx.export(learn.model.eval().cpu(), torch.randn(batch_size, *input_shape), "model.onnx", opset_version=11)
+#save architechture
 
 ################################### 
 
