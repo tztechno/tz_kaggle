@@ -34,3 +34,23 @@ dls = db.dataloaders(x, bs=32)
 
 
 ####################################################
+
+from fastai.vision.all import *
+
+# 3次元numpy配列の準備
+x = np.random.rand(100, 100, 100)
+y = np.random.randint(0, 2, size=(100, 100, 100))
+
+# データセットの作成
+db = DataBlock(blocks=(TensorImage, CategoryBlock),
+               get_items=get_image_files,
+               splitter=RandomSplitter(),
+               get_y=lambda o: y,
+               item_tfms=[Resize(128)],
+               batch_tfms=[Normalize.from_stats(*imagenet_stats)])
+
+dls = db.dataloaders(x, bs=16)
+
+
+
+####################################################
