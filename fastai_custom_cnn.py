@@ -31,7 +31,8 @@ dblock = DataBlock(blocks=(ImageBlock, CategoryBlock),
 dls = dblock.dataloaders('path/to/data')
 
 # Create a Learner object using your custom CNN architecture
-learn = Learner(dls, CustomCNN(), loss_func=CrossEntropyLossFlat(), metrics=accuracy)
+learn = vision_learner(dls, CustomCNN(), loss_func=CrossEntropyLossFlat(), metrics=accuracy)
 
 # Train the model
 learn.fit_one_cycle(10)
+
