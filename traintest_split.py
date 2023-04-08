@@ -1,5 +1,6 @@
 
-////////////////////////////////////////////////////////////
+
+########################
 
 import pandas as pd
 import numpy as np
@@ -14,4 +15,15 @@ train_idx, test_idx = idx[:train_size], idx[train_size:]
 train_df, test_df = df.iloc[train_idx], df.iloc[test_idx]
 
 
-////////////////////////////////////////////////////////////
+########################
+
+
+m=len(data)
+M=list(range(m))
+random.seed(2021)
+random.shuffle(M)
+
+train=data.iloc[M[0:(m//5)*4]]
+test=data.iloc[M[(m//5)*4:]]
+
+########################
