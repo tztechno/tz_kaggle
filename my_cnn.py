@@ -1,3 +1,35 @@
+
+#########################################################
+#input torch.Size([32, 4000, 3])
+#output torch.Size([32, 250])
+
+class MyCNN(nn.Module):
+    def __init__(self):
+        super(MyCNN, self).__init__()
+        self.conv1_weights = nn.Parameter(torch.randn(64, 3, 3))
+        self.conv1_bias = nn.Parameter(torch.randn(64))
+        self.conv2_weights = nn.Parameter(torch.randn(128, 64, 3))
+        self.conv2_bias = nn.Parameter(torch.randn(128))
+        self.conv3_weights = nn.Parameter(torch.randn(256, 128, 3)) 
+        self.conv3_bias = nn.Parameter(torch.randn(256)) 
+        self.fc1 = nn.Linear(128000, 250) 
+
+    def forward(self, x):
+        batch_size = x.size(0)
+        x = x.permute(0, 2, 1) 
+        x = F.conv1d(x, self.conv1_weights, bias=self.conv1_bias, stride=1, padding=1)
+        x = F.relu(x)
+        x = F.max_pool1d(x, 2)
+        x = F.conv1d(x, self.conv2_weights, bias=self.conv2_bias, stride=1, padding=1)
+        x = F.relu(x)
+        x = F.max_pool1d(x, 2)
+        x = F.conv1d(x, self.conv3_weights, bias=self.conv3_bias, stride=1, padding=1)
+        x = F.relu(x)
+        x = F.max_pool1d(x, 2)
+        x = x.view(batch_size, -1) 
+        x = self.fc1(x) 
+        return x
+
 #########################################################
 #input torch.Size([32, 4000, 3])
 #output torch.Size([32])
