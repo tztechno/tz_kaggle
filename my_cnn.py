@@ -1,4 +1,24 @@
+#########################################################
+#input torch.Size([32, 4000, 3])
+#output torch.Size([32])
 
+class MyCNN(nn.Module):
+    def __init__(self, num_classes=245):
+        super(MyCNN, self).__init__()
+        self.conv1 = nn.Conv1d(3, 32, kernel_size=3, padding=1)
+        self.relu = nn.ReLU()
+        self.maxpool = nn.MaxPool1d(kernel_size=16)
+        self.fc = nn.Linear(32*250, num_classes)
+
+    def forward(self, x):
+        x = x.permute(0,2,1) 
+        x = self.conv1(x)
+        x = self.relu(x)
+        x = self.maxpool(x)
+        x = torch.flatten(x, 1)
+        x = self.fc(x)
+        return x.squeeze()
+    
 #########################################################
 #input torch.Size([16, 3, 100, 100])
 #output torch.Size([16, 4])
