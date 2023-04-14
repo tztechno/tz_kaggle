@@ -1,10 +1,12 @@
 #########################################
 #pose
+# For webcam input
 with mp_pose.Pose(
     min_detection_confidence=0.5,
     min_tracking_confidence=0.5) as pose:
 #########################################
-#pose    
+#pose
+# For static images
 with mp_pose.Pose(
     static_image_mode=True,
     model_complexity=2,
