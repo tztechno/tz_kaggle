@@ -1,5 +1,29 @@
 
 #########################################################
+
+class MyCNN(nn.Module):
+    def __init__(self):
+        super(MyCNN, self).__init__()
+        self.conv1 = nn.Conv1d(4000, 1000, kernel_size=3)
+        self.relu1 = nn.ReLU(inplace=True)
+        self.fc1 = nn.Linear(1000, 500)         
+        self.fc2 = nn.Linear(500,1000) 
+        self.fc3 = nn.Linear(1000, 500) 
+        self.fc4 = nn.Linear(500, 250) 
+
+    def forward(self, x):
+        print(x.shape)#torch.Size([32, 4000, 3])
+        x = self.conv1(x)     
+        x = self.relu1(x)
+        x = x.view(-1, 1000)
+        x = self.fc1(x)
+        x = self.fc2(x)
+        x = self.fc3(x)
+        x = self.fc4(x)        
+        print(x.shape)#torch.Size([32, 250])
+        return x
+
+#########################################################
 #input torch.Size([32, 4000, 3])
 #output torch.Size([32, 250])
 
