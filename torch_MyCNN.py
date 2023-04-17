@@ -13,7 +13,7 @@ class MyCNN(nn.Module):
         self.fc1 = nn.Linear(256 * 40 * 20, 250)
 
     def forward(self, x):
-        print(x.shape)#torch.Size([32, 5, 3, 50, 50])         
+        print(x.shape)#torch.Size([32,4000,3])         
         x = x.view(-1,15,40,20)          
         x = torch.relu(self.conv1(x))
         x = torch.relu(self.conv2(x))
