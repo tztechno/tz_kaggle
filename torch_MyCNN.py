@@ -1,3 +1,28 @@
+
+##############################################
+
+#input_shape = (32,4000,3)
+#output_shape = (32,250)
+
+class MyCNN(nn.Module):
+    def __init__(self):
+        super(MyCNN, self).__init__()
+        self.conv1 = nn.Conv2d(15, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        self.conv2 = nn.Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        self.conv3 = nn.Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        self.fc1 = nn.Linear(256 * 40 * 20, 250)
+
+    def forward(self, x):
+        print(x.shape)#torch.Size([32, 5, 3, 50, 50])         
+        x = x.view(-1,15,40,20)          
+        x = torch.relu(self.conv1(x))
+        x = torch.relu(self.conv2(x))
+        x = torch.relu(self.conv3(x))
+        x = x.view(-1, 256 * 40 * 20)
+        x = self.fc1(x)
+        print(x.shape)
+        return x  
+
 ##############################################
 
 ## input (32, 224, 224, 3) 
