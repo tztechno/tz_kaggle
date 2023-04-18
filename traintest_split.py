@@ -1,5 +1,16 @@
 
+########################
+import random
 
+def split_train_test(n, test_ratio=0.2, seed=None):
+    rng = random.Random(seed)
+    indices = list(range(n))
+    rng.shuffle(indices)
+    test_size = int(n * test_ratio)
+    test_indices = indices[:test_size]
+    train_indices = indices[test_size:]
+    return train_indices, test_indices
+  
 ########################
 
 import pandas as pd
