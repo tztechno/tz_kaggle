@@ -10,3 +10,18 @@ alex.classifier=nn.Sequential(   nn.Linear(9216,1024),
 
 model=alex
 
+'''
+The list of models
+
+AlexNet
+VGG (VGG11, VGG13, VGG16, VGG19)
+ResNet (ResNet18, ResNet34, ResNet50, ResNet101, ResNet152)
+SqueezeNet (SqueezeNet1_0, SqueezeNet1_1)
+DenseNet (DenseNet121, DenseNet169, DenseNet201, DenseNet161)
+Inception (InceptionV3)
+GoogLeNet (GoogLeNet)
+ShuffleNet (ShuffleNetV2)
+MobileNet (MobileNetV2)
+EfficientNet (EfficientNet)
+
+'''
