@@ -8,6 +8,9 @@ model.classifier=nn.Sequential(   nn.Linear(9216,1024),
                                  nn.Linear(1024,4),
                                  nn.LogSoftmax(dim=1))
 
+output = model(inputs)
+
+
 
 '''
 The list of models
