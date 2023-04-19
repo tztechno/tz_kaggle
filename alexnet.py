@@ -2,7 +2,7 @@ from torchvision import models
 
 model = models.alexnet(pretrained=True)
 
-model.classifier=nn.Sequential(   nn.Linear(9216,1024),
+model.classifier=nn.Sequential(  nn.Linear(9216,1024),
                                  nn.ReLU(),
                                  nn.Dropout(p=0.5),
                                  nn.Linear(1024,4),
