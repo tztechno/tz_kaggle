@@ -2,10 +2,12 @@ from torchvision import models
 
 model = models.alexnet(pretrained=True)
 
+num_classes = 4
+
 model.classifier=nn.Sequential(  nn.Linear(9216,1024),
                                  nn.ReLU(),
                                  nn.Dropout(p=0.5),
-                                 nn.Linear(1024,4),
+                                 nn.Linear(1024,num_classes),
                                  nn.LogSoftmax(dim=1))
 
 output = model(inputs)
