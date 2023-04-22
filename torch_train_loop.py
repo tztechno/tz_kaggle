@@ -53,6 +53,7 @@ print(f'\nDuration: {time.time() - start_time:.0f} seconds')
  
 #######################################################   
 ###used in InceptionNet
+
 max_acc=0
 train_acc = []
 val_acc = []
@@ -66,8 +67,8 @@ for epoch in range(n_epochs):
     
     for batch_num,(batch,labels) in enumerate(train_loader):
         inp,target = batch.to(device),labels.to(device)
-        optim.zero_grad()
-        output = inception.forward(inp)
+        optimizer.zero_grad()
+        output = model.forward(inp)
         
         op = F.softmax(output,dim=1)
         
@@ -96,7 +97,7 @@ for epoch in range(n_epochs):
     
     # Turn off gradients for validation, saves memory and computations
     with torch.no_grad():
-        inception.eval()
+        model.eval()
         print("Validating.....")
 
         for batch in valid_loader:
@@ -110,7 +111,7 @@ for epoch in range(n_epochs):
     val_acc.append(eval_acc/len(valid_loader))
     if eval_acc>max_acc:
         max_acc = eval_acc
-        torch.save(inception,"inception.pt")
+        torch.save(model,"model.pt")
     #print("FOP",final_op)
     #print("TARGET",target)
     
