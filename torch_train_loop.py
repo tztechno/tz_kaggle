@@ -50,12 +50,9 @@ accuracy: {trn_corr.item()*100/(10*b):7.3f}%')
 
 print(f'\nDuration: {time.time() - start_time:.0f} seconds')   
 
-
  
 #######################################################   
 ###used in InceptionNet
-
-n_epochs = 3
 max_acc=0
 train_acc = []
 val_acc = []
@@ -65,7 +62,7 @@ for epoch in range(n_epochs):
     val_loss = 0
     acc = 0.0
     print("Training....")
-    inception.train()
+    model.train()
     
     for batch_num,(batch,labels) in enumerate(train_loader):
         inp,target = batch.to(device),labels.to(device)
@@ -104,7 +101,7 @@ for epoch in range(n_epochs):
 
         for batch in valid_loader:
             inp,target = batch[0].to(device),batch[1].to(device)
-            op = F.softmax(inception.forward(inp))
+            op = F.softmax(model.forward(inp))
             final_op = torch.argmax(op,dim=1)
 
             eval_acc += np.sum(final_op.detach().cpu().numpy()==target.detach().cpu().numpy())/len(target)
