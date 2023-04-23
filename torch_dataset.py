@@ -27,7 +27,7 @@ class CustomDataset(Dataset):
         #                          std=[0.229, 0.224, 0.225])
         # ])
         # image = transform(image)
-        return path, label
+        return image, label
 
 ######################################################
 #create dataset from df of path/label
