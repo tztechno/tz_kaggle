@@ -75,3 +75,12 @@ dataset = MyDataset(data, labels)
 
 ######################################################
 
+def dataset_to_data(dataset):
+    dataX = []
+    dataY = []
+    for x, y in dataset:
+        dataX.append(x)
+        dataY.append(y)
+    return dataX, dataY
+
+######################################################
