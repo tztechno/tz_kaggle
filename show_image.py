@@ -1,3 +1,5 @@
+#####################################
+
 import cv2
 import matplotlib.pyplot as plt
 
@@ -9,3 +11,12 @@ def show_image(path):
     plt.axis('OFF')
     plt.show()
     return img
+
+#####################################
+
+from PIL import Image
+
+img = Image.open("画像ファイルのパス")
+img.show()
+
+#####################################
