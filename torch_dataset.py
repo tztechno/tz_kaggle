@@ -84,3 +84,22 @@ def dataset_to_data(dataset):
     return dataX, dataY
 
 ######################################################
+
+class ImageDataset(Dataset):
+    def __init__(self, path_label, transform=None):
+        self.path_label = path_label
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.path_label)
+
+    def __getitem__(self, idx):
+        path, label = self.path_label[idx]
+        img = Image.open(path).convert('RGB')
+
+        if self.transform is not None:
+            img = self.transform(img)
+
+        return img, label
+    
+######################################################
