@@ -103,3 +103,19 @@ class ImageDataset(Dataset):
         return img, label
     
 ######################################################
+
+from torchvision.datasets import ImageFolder
+
+class ImageDataset(Dataset):
+    def __init__(self, root_dir, transform=None):
+        self.dataset = ImageFolder(root=root_dir, transform=transform)
+
+    def __len__(self):
+        return len(self.dataset)
+
+    def __getitem__(self, idx):
+        img, label = self.dataset[idx]
+
+        return img, label
+
+######################################################
