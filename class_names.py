@@ -1,7 +1,7 @@
 
 #################################
 
-Name=data['Species'].unique().tolist()
+class_names=data['Species'].unique().tolist()
 
 #################################
 
