@@ -1,3 +1,7 @@
+########################
+
+from sklearn.model_selection import train_test_split
+train_data, test_data, train_labels, test_labels = train_test_split(df.data, df.target, test_size=0.2, random_state=42)
 
 ########################
 import random
