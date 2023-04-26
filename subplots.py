@@ -22,3 +22,16 @@ for i, ax in enumerate(axes.ravel()):
 plt.show()
 
 ######################################
+
+fig, axs = plt.subplots(3,3,figsize=(9,9))
+for i in range(9):
+    r=i//3
+    c=i%3
+    img1 = cv2.imread(filesA2[i])
+    file=filesA2[i].split('/')[-1][0:-4]
+    ax=axs[r][c].axis("off")
+    ax=axs[r][c].set_title(file)
+    ax=axs[r][c].imshow(img1)
+plt.show()
+
+######################################
