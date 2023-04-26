@@ -12,4 +12,11 @@ data['Species']=data['Species'].map(normal_mapping)
 
 ################
 
+class_names = ['paper', 'rock', 'scissors']
+N = list(range(len(class_names)))
+normal_mapping = dict(zip(class_names, N)) 
+reverse_mapping = dict(zip(N, class_names))    
+
+################
+
 
