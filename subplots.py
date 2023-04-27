@@ -23,6 +23,20 @@ plt.show()
 
 ######################################
 
+indices = random.sample(range(len(paths2)),16)
+fig, axs = plt.subplots(4, 4, figsize=(8,8))
+for i, ax in enumerate(axs.flatten()):
+    path=paths2[indices[i]]
+    #print(path)
+    img=cv2.imread(path)
+    img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    ax.imshow(img)
+    ax.axis("off")
+plt.tight_layout()
+plt.show()
+
+######################################
+
 fig, axs = plt.subplots(3,3,figsize=(9,9))
 for i in range(9):
     r=i//3
