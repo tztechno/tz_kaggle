@@ -1,5 +1,32 @@
 #################################################################
 
+class DataModule(pl.LightningDataModule):
+    
+    def __init__(self, transform=transform, batch_size=32):
+        super().__init__()
+        self.train_dir = "/kaggle/input/parkinsons-drawings/spiral/training"
+        self.test_dir = "/kaggle/input/parkinsons-drawings/spiral/testing"
+        self.transform = transform
+        self.batch_size = batch_size
+
+    def setup(self, stage=None):
+        if stage == 'fit' or stage is None:
+            self.trainset = datasets.ImageFolder(root=self.train_dir, transform=self.transform)
+            self.train_dataloader_ = DataLoader(self.trainset, batch_size=self.batch_size, shuffle=True)
+
+        if stage == 'test' or stage is None:
+            self.testset = datasets.ImageFolder(root=self.test_dir, transform=self.transform)
+            self.test_dataloader_ = DataLoader(self.testset, batch_size=self.batch_size)
+
+    def train_dataloader(self):
+        return self.train_dataloader_
+
+    def test_dataloader(self):
+        return self.test_dataloader_
+
+
+#################################################################
+
 # define the datamodule class
 class IrisDataModule(pl.LightningDataModule):
     def __init__(self, data):
