@@ -1,3 +1,15 @@
+###################################################
+
+    def setup(self, stage=None):
+        n_data = len(self.data_df)
+        n_train = int(0.8 * n_data)
+        n_test = n_data - n_train
+        train_dataset, test_dataset = torch.utils.data.random_split(dataset, [n_train, n_test])
+        self.train_dataset = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
+        self.test_dataset = DataLoader(test_dataset, batch_size=self.batch_size)
+
+###################################################
+
 class DataModule(pl.LightningDataModule):
     
     def __init__(self, transform=transform, batch_size=32):
@@ -10,6 +22,7 @@ class DataModule(pl.LightningDataModule):
         data = datasets.ImageFolder(root=self.root_dir, transform=self.transform)
         n_data = len(data)
         n_train = n_data*4//5
+        
         train_indices = list(range(n_train))
         test_indices = list(range(n_train, n_data))
 
@@ -27,3 +40,5 @@ class DataModule(pl.LightningDataModule):
 
     def test_dataloader(self):
         return self.test_dataset
+    
+###################################################    
