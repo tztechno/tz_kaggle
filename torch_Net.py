@@ -1,4 +1,5 @@
 ###############################################################
+
 model= models.mobilenet_v2(pretrained=True)
 #model= models.alexnet(pretrained=True)
 
@@ -12,6 +13,20 @@ model.classifier=nn.Sequential( nn.Linear(1280,1024),
                                 nn.LogSoftmax(dim=1))
 
 ###############################################################
+
+class MyCNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.model = torch.hub.load('facebookresearch/dino:main', 'dino_vits16')
+        self.fc1 = nn.Linear(384, 5)        
+
+    def forward(self, x):
+        x = self.model(x)
+        x = self.fc1(x)      
+        return x
+    
+###############################################################
+
 class MyCNN(nn.Module):
     def __init__(self):
         super().__init__()
@@ -25,6 +40,7 @@ class MyCNN(nn.Module):
     def forward(self, x):
         x = self.model(x)
         return x
+    
 ###############################################################
 
 #(224,224)
