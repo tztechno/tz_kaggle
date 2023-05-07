@@ -1,7 +1,7 @@
 
-# save CNNmodel
-torch.save(model.state_dict(), 'CNNmodel.pt')   #success
+# save model
+torch.save(model.state_dict(), 'model.pt')
 
-# load CNNmodel
-new_model = ConvolutionalNetwork()
-new_model.load_state_dict(torch.load('CNNmodel.pt'))
+# load model
+model = MyModel()
+model.load_state_dict(torch.load('model.pt'))
