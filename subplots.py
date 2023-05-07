@@ -49,3 +49,16 @@ for i in range(9):
 plt.show()
 
 ######################################
+
+for images, labels in dataloader:
+    break
+fig, axs = plt.subplots(16,4, figsize=(12,48))
+for i, ax in enumerate(axs.flatten()):
+    img=np.transpose(images[i].numpy(),(1,2,0))
+    ax.set_title(reverse_mapping[int(labels[i])])
+    ax.imshow(img)
+    ax.axis("off")
+plt.tight_layout()
+plt.show()
+
+######################################
