@@ -83,3 +83,15 @@ plt.axis("off")
 plt.show()
 
 ######################################
+
+random_idx = np.random.randint(1, len(path_label), size=9)
+fig, axes = plt.subplots(3,3, figsize=(10,10))
+
+for idx, ax in enumerate(axes.ravel()):
+    img = Image.open(path_label[idx][0])
+    label=path_label[idx][1]
+    ax.set_title(reverse_mapping[label])
+    ax.axis('off')
+    ax.imshow(img)
+    
+######################################
