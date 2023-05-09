@@ -119,3 +119,22 @@ class ImageDataset(Dataset):
         return img, label
 
 ######################################################
+
+class IrisDataSet:
+    
+    def __init__(self, data):
+        dataY = data['Species']
+        dataX = data.drop(['Id','Species'],axis=1)
+        self.data = data
+        self.dataX = dataX.values.astype(np.float32) ###
+        self.dataY = dataY.values.astype(np.float32) ###
+
+    
+    def __len__(self):
+        return len(self.data)
+    
+    def __getitem__(self, index):
+        return self.dataX[index], self.dataY[index]    
+    
+
+######################################################    
