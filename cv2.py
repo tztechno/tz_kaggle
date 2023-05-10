@@ -23,3 +23,26 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 ##################################################
+
+import cv2
+import numpy as np
+
+image = cv2.imread("image.jpg")
+mask = cv2.imread("mask.png", 0)  # 0はグレースケールで読み込むことを指定する
+_, mask = cv2.threshold(mask, 10, 255, cv2.THRESH_BINARY)
+
+mask_inv = cv2.bitwise_not(mask)
+
+fg = cv2.bitwise_and(image, image, mask=mask)
+bg = cv2.bitwise_and(image, image, mask=mask_inv)
+result = cv2.add(fg, bg)
+
+cv2.imshow("Result", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+##################################################
+
+
+
+
