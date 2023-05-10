@@ -1,3 +1,14 @@
+
+######################################
+
+fig, ax = plt.subplots(figsize=(3, 3))
+ax.imshow(bgw)
+for i in [0, 2]:
+    masks2i = masks1[i]
+    show_anns([masks2i])
+ax.axis('off')
+fig.savefig("保存するファイルパス")
+
 ######################################
 
 indices = np.random.choice(trainX.shape[0], 9)
