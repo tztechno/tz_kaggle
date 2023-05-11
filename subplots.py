@@ -106,3 +106,16 @@ for idx, ax in enumerate(axes.ravel()):
     ax.imshow(img)
     
 ######################################
+
+fig, ax = plt.subplots()
+ax.plot(datah['date'], datah['rainfall'])
+ax.set_xlabel('Date')
+ax.set_ylabel('rainfall')
+ax.set_title('rainfall')
+plt.xticks(rotation=90,size=8)
+x_value = pd.to_datetime('2023-05-08 01:00:00')
+ax.axvline(x=x_value, color='red')
+plt.title('The timing of levee breach')
+plt.show()
+
+######################################
