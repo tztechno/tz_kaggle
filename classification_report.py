@@ -1,13 +1,17 @@
+########################################
 
 from sklearn.metrics import classification_report
 
+print(classification_report(y_true, y_pred, target_names=class_names, digits=4))
+
+########################################
+
+from sklearn.metrics import classification_report
 
 classification_report(y_true, y_pred, 
                       labels=None, target_names=None, 
                       sample_weight=None, digits=2, 
                       output_dict=False, zero_division='warn')
-
-
 '''
 y_true: 真のラベル。shape=(n_samples,)の1次元配列。
 y_pred: 予測されたラベル。shape=(n_samples,)の1次元配列。
@@ -18,3 +22,4 @@ digits (オプション): 小数点以下の桁数。
 output_dict (オプション): レポートを辞書形式で出力するかどうかを示すブール値。
 zero_division (オプション): 0で除算が発生した場合の動作を制御するための文字列または数値。
 '''                  
+########################################
