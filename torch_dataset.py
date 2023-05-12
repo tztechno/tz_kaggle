@@ -138,3 +138,44 @@ class IrisDataSet:
     
 
 ######################################################    
+
+import torch
+from torch.utils.data import Dataset
+
+class MyDataset(Dataset):
+    def __init__(self, data, labels):
+        self.data = data
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, index):
+        x = self.data[index]
+        y = self.labels[index]
+        return x, y
+    
+######################################################    
+      
+data = [text_1, text_2, text_3, ...]  # 元のテキストデータ
+labels = [label_1, label_2, label_3, ...]  # テキストに対応するラベルデータ
+
+class MyDataset(Dataset):
+    def __init__(self, data, labels):
+        self.data = data
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, index):
+        x = self.data[index]
+        y = self.labels[index]
+        return x, y
+    
+encoded_data = [create_data(text) for text in data]
+dataset = MyDataset(encoded_data, labels)
+
+######################################################  
+
+
