@@ -1,3 +1,17 @@
+
+##################################################
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+path='00021adfb725ed.jpg'
+img=cv2.imread(path)
+img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+plt.imshow(img)
+plt.show()
+print(img.shape)
+
 ##################################################
 
 import cv2
