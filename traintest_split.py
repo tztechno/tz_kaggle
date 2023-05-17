@@ -29,6 +29,13 @@ class DataModule(pl.LightningDataModule):
 ########################
 
 from sklearn.model_selection import train_test_split
+path_label12,path_label3 = train_test_split(path_label0, test_size=0.2, random_state=42)
+path_label1,path_label2 = train_test_split(path_label12, test_size=0.2, random_state=42)
+print(len(path_label1),len(path_label2),len(path_label3))
+
+########################
+
+from sklearn.model_selection import train_test_split
 train, test = train_test_split(df, test_size=0.2, random_state=42)
 
 ########################
