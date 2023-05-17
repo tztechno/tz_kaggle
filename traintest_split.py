@@ -81,3 +81,31 @@ test=data.iloc[M[(m//5)*4:]]
 
 ########################
 
+import torch
+from torch.utils.data import random_split
+
+# データセットを作成するコード（例）
+dataset = YourDataset()
+
+# データセットのサイズを取得
+dataset_size = len(dataset)
+
+# train、validation、testの割合を設定
+train_ratio = 0.7
+val_ratio = 0.15
+test_ratio = 0.15
+
+# データセットを分割するためのインデックスを計算
+train_size = int(train_ratio * dataset_size)
+val_size = int(val_ratio * dataset_size)
+test_size = dataset_size - train_size - val_size
+
+# データセットをランダムに分割
+train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
+
+# 分割後のデータセットのサイズを確認
+print("Train dataset size:", len(train_dataset))
+print("Validation dataset size:", len(val_dataset))
+print("Test dataset size:", len(test_dataset))
+
+########################
