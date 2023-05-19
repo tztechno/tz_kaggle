@@ -1,6 +1,23 @@
 
 ########################
 
+n=len(info)
+N=list(range(n))
+random.shuffle(N)
+
+train_ratio = 0.6
+valid_ratio = 0.2
+test_ratio = 0.2
+
+train_size = int(train_ratio * n)
+valid_size = int(valid_ratio * n)
+
+train = N[:train_size]
+valid = N[train_size:train_size+valid_size]
+test = N[train_size+valid_size:]
+
+########################
+
 class DataModule(pl.LightningDataModule):
     def __init__(self, data, test_size=0.2, random_state=42):
         super().__init__()
