@@ -1,6 +1,20 @@
 
 ######################################
 
+m=len(masks1)//4
+print(len(masks1))
+fig, axs = plt.subplots(m+1,4, figsize=(8,m*2))
+for i, ax in enumerate(axs.flatten()):
+    if i < len(masks1):
+        img=show_anns([masks1[i]])
+        ax.imshow(img)
+        ax.set_title(f'mask{i}')
+        ax.axis('off')  
+plt.tight_layout()
+plt.show()
+
+######################################
+
 fig, ax = plt.subplots(figsize=(3, 3))
 ax.imshow(bgw)
 for i in [0, 2]:
