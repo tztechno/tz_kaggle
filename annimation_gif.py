@@ -38,3 +38,29 @@ from IPython.display import Image
 Image(open(output_file, 'rb').read())
 
 ##############################################
+
+import numpy as np
+from PIL import Image
+import imageio
+
+path0='/kaggle/input/google-research-identify-contrails-reduce-global-warming/train/1000603527582775543/band_08.npy'
+np0=np.load(path0)
+np0=np0.reshape(256,256,8)
+frames=np.transpose(np0,(2,0,1))
+
+for i, frame in enumerate(frames):
+    plt.imsave(f"frame_{i}.png", frame)
+
+images = []
+for i in range(8):
+    image = Image.open(f"frame_{i}.png")
+    images.append(np.array(image))
+
+output_file = "detections.gif"
+imageio.mimsave(output_file, images, fps=10)
+
+from IPython.display import Image
+Image(open(output_file, 'rb').read())
+
+
+##############################################
