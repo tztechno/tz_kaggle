@@ -1,3 +1,4 @@
+######################################
 
 import os
 
@@ -8,3 +9,21 @@ new_folder = "xxx"
 if not os.path.exists(new_folder):
     os.makedirs(new_folder)
     
+######################################
+
+import shutil
+
+directory = 'kaggle/working/yolo_tracking'
+shutil.rmtree(directory)    
+    
+######################################    
+
+rm -r kaggle/working/yolo_tracking
+
+#再帰的にフォルダ内のファイルやサブディレクトリも削除する
+
+######################################
+
+rm -pf kaggle/working/yolo_tracking
+
+######################################
