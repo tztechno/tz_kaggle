@@ -25,7 +25,7 @@ from super_gradients.common.object_names import Datasets
 from super_gradients.common.registry.registry import register_dataset
 from super_gradients.common.abstractions.abstract_logger import get_logger
 
-
+from super_gradients.training.models.detection_models.yolo_base import YoloPostPredictionCallback
 
 
 
