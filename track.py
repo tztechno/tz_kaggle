@@ -1,4 +1,11 @@
 
+usage: track.py [-h] [--yolo-model YOLO_MODEL] [--reid-model REID_MODEL]
+                [--tracking-method TRACKING_METHOD] [--source SOURCE]
+                [--imgsz IMGSZ [IMGSZ ...]] [--conf CONF] [--device DEVICE]
+                [--show] [--save] [--classes CLASSES [CLASSES ...]]
+                [--project PROJECT] [--name NAME] [--exist-ok] [--half]
+                [--vid-stride VID_STRIDE] [--hide-label] [--hide-conf]
+
 
 !python examples/track.py  --yolo-model yolov8n.pt      # bboxes only
                                         yolov8n-seg.pt  # bboxes + segmentation masks
