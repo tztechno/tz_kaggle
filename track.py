@@ -24,7 +24,7 @@ usage: track.py [-h] [--yolo-model YOLO_MODEL] [--reid-model REID_MODEL]
  
   
 ## track person and car classes
-!python track.py  --source 0  --yolo-model checkpoints/yolov5s.pt  --reid-model CLIP-RN50  --filter-class 0 2    
+!python track.py  --source 0  --yolo-model checkpoints/yolov5s.pt  --reid-model CLIP-RN50  --classes 0 2    
     
     
 
