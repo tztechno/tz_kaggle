@@ -32,7 +32,7 @@ def create_animation(ims):
 
 
 def create_animation(ims):
-    fig=plt.figure(figsize=(12,8))
+    fig=plt.figure(figsize=(16,8))
     im=plt.imshow(cv2.cvtColor(ims[0],cv2.COLOR_BGR2RGB))
     text = plt.text(0.05, 0.05, f'Slide {0}', transform=fig.transFigure, fontsize=14, color='blue')
     plt.axis('off')
@@ -40,9 +40,9 @@ def create_animation(ims):
 
     def animate_func(i):
         im.set_array(cv2.cvtColor(ims[i],cv2.COLOR_BGR2RGB))
-        text.set_text(f'Slide {20+i}')        
+        text.set_text(f'Slide {i}')        
         return [im]    
     
     return animation.FuncAnimation(fig, animate_func, frames=len(ims), interval=1000//10)
 
-create_animation(np.array(images0)[20:])
+create_animation(np.array(images0))
