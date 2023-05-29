@@ -1,5 +1,15 @@
 
 ##############################################
+import imageio
+
+output_file = "detections.gif"
+imageio.mimsave(output_file, images, duration=20)
+
+from IPython.display import Image
+#Image(open(output_file, 'rb').read())
+display(Image(filename=output_file, format='png', embed=True))
+
+##############################################
 
 !ffmpeg -y -i detections.mp4 -vf "fps=10" -loop 0 detections.gif
 
