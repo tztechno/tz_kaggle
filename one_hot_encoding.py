@@ -1,4 +1,5 @@
 ###########################
+
 import numpy as np
 
 categorical_data = np.array([1, 2, 3])
