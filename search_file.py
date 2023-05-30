@@ -1,6 +1,6 @@
 import os
 
-def search_files(folder_path, search_term):
+def search_files_in_folder(folder_path, search_term):
     results = []
     for root, dirs, files in os.walk(folder_path):
         for file_name in files:
@@ -11,6 +11,6 @@ def search_files(folder_path, search_term):
 # 使用例
 folder_path = '/path/to/folder'
 search_term = 'example'
-search_results = search_files(folder_path, search_term)
+search_results = search_files_in_folder(folder_path, search_term)
 for result in search_results:
     print(result)
