@@ -5,8 +5,7 @@ import numpy as np
 categorical_data = np.array([1, 2, 3])
 unique_values = np.unique(categorical_data)
 one_hot_data = np.eye(len(unique_values))[categorical_data]
-
-print(one_hot_data)
+one_hot_data2=one_hot_data.reshape(-1,len(unique_values))
 
 ###########################
 
