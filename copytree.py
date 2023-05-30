@@ -1,3 +1,8 @@
+######################
+
+cp /path/to/source/ /path/to/destination/directory/
+
+######################
 
 import os
 import shutil
