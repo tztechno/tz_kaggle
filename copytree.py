@@ -1,6 +1,6 @@
 ######################
 
-cp /path/to/source/ /path/to/destination/directory/
+cp -r /path/to/source/ /path/to/destination/directory/
 
 ######################
 
