@@ -1,6 +1,18 @@
 
 ##########################
 
+import json
+
+def read_jsonl(file_path):
+    data = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            json_data = json.loads(line)
+            data.append(json_data)
+    return data
+
+##########################
+
 import pandas as pd
 import json
 
