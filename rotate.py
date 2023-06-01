@@ -2,22 +2,13 @@
 ###################################################
 
 import numpy as np
-from PIL import Image
-
-image_path = 'path/to/image.jpg'
-image = np.array(Image.open(image_path))
+from scipy import ndimage
 angle = 45
-
-height, width = image.shape[:2]
-center = (width // 2, height // 2)
-
-rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
-rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
-
-rotated_image = Image.fromarray(rotated_image)
-rotated_image.show()
-
-rotated_image.save('path/to/rotated_image.jpg')
+r_img = ndimage.rotate(img, angle, reshape=False)
+print(r_img.shape)
+plt.imshow(r_img)
+plt.axis('off')
+plt.show()
 
 ###################################################
 
