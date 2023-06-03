@@ -5,6 +5,7 @@ df.query("列名 > 5")
 複数の条件を組み合わせる場合:
 df.query("列名1 > 5 and 列名2 == '値'")
 df.query("`class` == 'person' and `confidence` > 0.2")
+df.query("(`class` == 'car' or `class` == 'truck') and `confidence` > 0.2")
 
 文字列の一致を確認する場合:
 df.query("列名.str.contains('キーワード')")
