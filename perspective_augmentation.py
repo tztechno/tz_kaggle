@@ -1,15 +1,21 @@
 import cv2
 import numpy as np
 
+#自由設定
+def perspective_augmentation(image, top_left, top_right, bottom_right, bottom_left):
+    height, width = image.shape[:2]
+    src_points = np.float32([top_left, top_right, bottom_right, bottom_left])
+    dst_points = np.float32([[0, 0], [width, 0], [width, height], [0, height]])
+    perspective_matrix = cv2.getPerspectiveTransform(src_points, dst_points)
+    augmented_image = cv2.warpPerspective(image, perspective_matrix, (width, height))
+    return augmented_image
+
+#上からの図
 def perspective_augmentation(image, scale=0.5, shear_range=10):
     height, width = image.shape[:2]
-    # 透視変換前の座標を指定します
     src_points = np.float32([[0, 0], [width, 0], [width, height], [0, height]])
-    # 透視変換後の座標を指定します
     dst_points = np.float32([[0, 0], [width, 0], [width * scale, height], [width * (1 - scale), height]])
-    # 透視変換行列を計算します
     perspective_matrix = cv2.getPerspectiveTransform(src_points, dst_points)
-    # 透視変換を適用します
     augmented_image = cv2.warpPerspective(image, perspective_matrix, (width, height))
     return augmented_image
 
