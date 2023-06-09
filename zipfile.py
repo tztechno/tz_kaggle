@@ -14,6 +14,13 @@ def extract_zip(zip_file, destination_folder):
     with zipfile.ZipFile(zip_file, 'r') as zip_ref:
         zip_ref.extractall(destination_folder)
 
+source_folder = '/kaggle/input/turtle-data-downsized-for-yolo-nas'
+destination_zip = '/kaggle/working/folder.zip'
+destination_folder = '/kaggle/working/'
+
+create_zip(source_folder, destination_zip)
+extract_zip(destination_zip, destination_folder)        
+        
 ################################################################
 
 import zipfile
