@@ -1,5 +1,17 @@
 ########################################
 
+mean = np.array([0.485, 0.456, 0.406])
+std = np.array([0.229, 0.224, 0.225])
+
+normalized_image = normalize(image, mean, std)
+print(normalized_image)
+
+########################################
+
+import torch
+import torchvision.transforms as T
+import numpy as np
+
 img=cv2.imread(paths0[i])
 images0+=[img]
 img_tensor = torch.from_numpy(img).permute(1, 2, 0).float()
