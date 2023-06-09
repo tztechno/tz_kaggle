@@ -2,7 +2,7 @@
 
 img=cv2.imread(paths0[i])
 images0+=[img]
-img_tensor = torch.from_numpy(img).permute(1, 2, 0)
+img_tensor = torch.from_numpy(img).permute(1, 2, 0).float()
 nor_image = normalize(img_tensor).permute(2, 0, 1)
 images2+=[nor_image]
 
