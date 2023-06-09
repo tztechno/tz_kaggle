@@ -1,3 +1,13 @@
+########################################
+
+img=cv2.imread(paths0[i])
+images0+=[img]
+img_tensor = torch.from_numpy(img).permute(1, 2, 0)
+nor_image = normalize(img_tensor).permute(2, 0, 1)
+images2+=[nor_image]
+
+########################################
+
 import torch
 import torchvision.transforms as T
 import numpy as np
@@ -20,3 +30,5 @@ normalized_image = normalize(image_tensor)
 # Print the shape and range of the normalized image tensor
 print(normalized_image.shape)
 print(normalized_image.min(), normalized_image.max())
+
+########################################
