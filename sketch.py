@@ -1,3 +1,34 @@
+##################################################
+
+def create_edge(path):
+    image = cv2.imread(path)
+    image = cv2.resize(image,dsize=None,fx=factor*2,fy=factor*2)#####
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    smooth = cv2.GaussianBlur(gray, (5,5), 0)
+    edges = cv2.Canny(smooth, 50, 150) 
+    edges = cv2.bitwise_not(edges)
+    edges = cv2.resize(edges,dsize=None,fx=0.5,fy=0.5)#####
+    #edges=cv2.cvtColor(edges, cv2.COLOR_BGR2RGB)
+    return edges
+
+#sketch=create_sketch(path0)
+sketch=create_edge(path0)
+
+##################################################
+
+def create_edge_from_image(image):
+    #image = cv2.imread(path)
+    #image = cv2.resize(image,dsize=None,fx=factor*2,fy=factor*2)#####
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    smooth = cv2.GaussianBlur(gray, (5,5), 0)
+    edges = cv2.Canny(smooth, 50, 150) 
+    edges = cv2.bitwise_not(edges)
+    #edges = cv2.resize(edges,dsize=None,fx=0.5,fy=0.5)#####
+    #edges=cv2.cvtColor(edges, cv2.COLOR_BGR2RGB)
+    return edges
+
+##################################################
+
 import cv2
 import matplotlib.pyplot as plt
 
@@ -30,3 +61,5 @@ plt.show()
 plt.imshow(cv2.cvtColor(sketch, cv2.COLOR_GRAY2RGB))
 plt.axis('off')
 plt.show()
+
+##################################################
