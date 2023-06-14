@@ -1,11 +1,14 @@
-
+########################################################
+(500, 500)
+    image = np.expand_dims(image, axis=-1) 
+(500, 500, 1)    
+    image = np.tile(image, (1,1,3))
+(500, 500, 3)
 ########################################################
 
 def convert_to_gray(image):
-
     image = np.expand_dims(image, axis=-1)
     image = np.tile(image, (1, 1, 3))
-    
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     return gray_image
