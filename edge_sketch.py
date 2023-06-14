@@ -1,3 +1,25 @@
+
+##################################################
+### best sketch and edge
+
+def create_edge(path):
+    image = cv2.imread(path)
+    image = cv2.resize(image,dsize=(500,500))
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    smooth = cv2.GaussianBlur(gray, (1,1), 0)
+    edges = cv2.Canny(smooth, 10,60) 
+    edges = cv2.bitwise_not(edges)
+    return edges
+
+def create_sketch(path):
+    image = cv2.imread(path)
+    gray_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    inv_img = 255 - gray_img
+    blurred = cv2.GaussianBlur(inv_img, (23,23), 0)
+    inv_blur = 255 - blurred
+    sketch = cv2.divide(gray_img, inv_blur, scale=256)    
+    return sketch
+
 ##################################################
 
 def create_edge(path):
