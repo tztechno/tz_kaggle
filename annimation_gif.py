@@ -1,4 +1,28 @@
 ##############################################
+
+def images_to_mp4(paths, output_path, fps=10):
+    image = cv2.imread(paths[0])
+    height, width, _ = image.shape
+
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    video_writer = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+
+    for path in paths:
+        image = cv2.imread(path)
+        video_writer.write(image)
+
+    video_writer.release()
+
+    
+images_to_mp4(paths, './sketch.mp4')
+path2='./sketch.mp4'
+
+!ffmpeg -y -i sketch.mp4 -vf "fps=10" -loop 1 sketch.gif
+
+from IPython.display import Image
+Image(open('./sketch.gif','rb').read())
+
+##############################################
 output_file = "detections.gif"
 imageio.mimsave(output_file, images, duration=20, loop=0) #repeat animation
 
