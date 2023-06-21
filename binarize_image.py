@@ -1,5 +1,24 @@
 ####################################################################
 
+img = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
+img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+img=binarize_image(img, threshold)
+
+####################################################################
+
+import numpy as np
+
+def binarize_image(image, threshold):
+    binary_image = np.where(image >= threshold, 255, 0)
+    return binary_image.astype(np.uint8)
+
+image_data = np.random.randint(0, 256, size=(5, 5), dtype=np.uint8)
+
+threshold = 128
+binary_image_data = binarize_image(image_data, threshold)
+
+####################################################################
+
 def binarize_image(image, threshold):
     _, binary_image = cv2.threshold(image, threshold, 255, cv2.THRESH_BINARY)
     return binary_image
