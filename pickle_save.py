@@ -50,3 +50,15 @@ X_test = ...
 y_pred = clf.predict(X_test)
 
 ####################################  
+## load
+with open("/kaggle/input/kaggle-notebook-ranking-2023-06/notebook.pkl", "rb") as f:
+    notebook2 = pickle.load(f)
+display(notebook2)
+
+## write
+with open("notebook.pkl", "wb") as f:
+    pickle.dump(data2, f)
+
+####################################  
+
+
