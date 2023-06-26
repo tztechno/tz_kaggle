@@ -142,3 +142,12 @@ ax.scatter(data0['power'],data0['price'])
 
 ######################################
 
+fig = make_subplots(specs=[[{"secondary_y":False}]])
+fig.add_trace(go.Scatter(x=data['date'],y=data['Tokyo'],name='Tokyo' ),secondary_y=False,)
+fig.add_trace(go.Scatter(x=data['date'],y=data['Osaka'],name='Osaka' ),secondary_y=False)
+fig.update_layout(autosize=False,width=700,height=500,title_text="Weekly New Infections in Japan")
+fig.update_xaxes(title_text="Week", tickangle=-90)
+fig.update_yaxes(title_text="New Infecions per Hospital",secondary_y=False)
+fig.show()
+
+######################################
