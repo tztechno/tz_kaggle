@@ -133,3 +133,12 @@ plt.title('The timing of levee breach')
 plt.show()
 
 ######################################
+
+fig,ax = plt.subplots(figsize=(6,6))
+ax.set_title('price vs power',fontsize=20)
+ax.set_xlabel('power',fontsize=12)
+ax.set_ylabel('price',fontsize=12)
+ax.scatter(data0['power'],data0['price'])
+
+######################################
+
