@@ -1,4 +1,5 @@
 import string
+import re
 from nltk.corpus import stopwords
 
 def clean_text(text):
