@@ -42,3 +42,32 @@ class DataModule(pl.LightningDataModule):
         return self.test_dataset
     
 ###################################################    
+
+class DataModule(pl.LightningDataModule):
+    
+    def __init__(self, transform=transform, batch_size=32):
+        super().__init__()
+        self.root_dir = "/kaggle/input/avengers-faces-dataset/images/"
+        self.transform = transform
+        self.batch_size = batch_size
+
+    def setup(self, stage=None):
+        train_dataset = datasets.ImageFolder(root=self.root_dir+'train/', transform=self.transform)
+        valid_dataset = datasets.ImageFolder(root=self.root_dir+'val/', transform=self.transform)
+        test_dataset = datasets.ImageFolder(root=self.root_dir+'test/', transform=self.transform)
+
+        self.train_dataset = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
+        self.valid_dataset = DataLoader(valid_dataset, batch_size=self.batch_size)
+        self.test_dataset = DataLoader(test_dataset, batch_size=self.batch_size)
+
+    def train_dataloader(self):
+        return self.train_dataset
+    
+    def valid_dataloader(self):
+        return self.valid_dataset
+    
+    def test_dataloader(self):
+        return self.test_dataset
+
+    
+###################################################   
