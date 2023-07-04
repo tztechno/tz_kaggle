@@ -103,5 +103,34 @@ imageio.mimsave(output_file, images, fps=10)
 from IPython.display import Image
 Image(open(output_file, 'rb').read())
 
+##############################################
+
+import imageio
+
+def create_animation_gif(image_paths, output_path, fps=10):
+    images = []
+    for image_path in image_paths:
+        images.append(imageio.imread(image_path))
+    
+    imageio.mimsave(output_path, images, format='GIF', fps=fps)
+    print(f"Animation GIF saved at {output_path}")
+
+# 画像のパスリスト
+image_paths = [
+    '/path/to/image1.png',
+    '/path/to/image2.png',
+    '/path/to/image3.png',
+    # ... 他の画像のパス
+]
+
+# アニメーションGIFの出力パス
+output_path = '/path/to/output.gif'
+
+# アニメーションGIFを作成
+create_animation_gif(image_paths, output_path)
+
+# 作成したアニメーションGIFを表示
+from IPython.display import Image
+Image(open(output_path, 'rb').read())
 
 ##############################################
