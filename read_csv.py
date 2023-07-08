@@ -1,3 +1,18 @@
+
+###########################################################################################
+import csv
+
+
+def read_csv_rows(csv_file, start_row, end_row):
+    rows = []
+    with open(csv_file, 'r') as file:
+        reader = csv.reader(file)
+        for i, row in enumerate(reader):
+            if start_row <= i + 1 <= end_row:
+                rows.append(row)
+    return rows
+
+
 ###########################################################################################
 
 import pandas as pd
