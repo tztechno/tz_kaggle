@@ -1,7 +1,10 @@
+
+
+################################
+
 from surprise import Dataset
 from surprise import KNNBasic
 
-# トレーニングセットとテストセットのデータフレームを用意する
 train_df  # トレーニングセットのデータフレーム
 test_df  # テストセットのデータフレーム
 
@@ -12,3 +15,21 @@ data = Dataset.load_from_df(train_df, reader=None)
 algo = KNNBasic()
 trainset = data.build_full_trainset()  # トレーニングセットをSurpriseのTrainsetオブジェクトに変換
 algo.fit(trainset)
+
+
+################################
+
+from surprise.prediction_algorithms import (
+    BaselineOnly,
+    CoClustering,
+    KNNBaseline,
+    KNNBasic,
+    KNNWithMeans,
+    NMF,
+    NormalPredictor,
+    SlopeOne,
+    SVD,
+    SVDpp,
+)
+
+################################
