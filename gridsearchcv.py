@@ -2,6 +2,43 @@
 ###############################################################
 
 from sklearn.model_selection import GridSearchCV
+import lightgbm as lgb
+import xgboost as xgb
+from sklearn.metrics import accuracy_score
+
+# LightGBMモデルの定義
+lgb_model = lgb.LGBMClassifier(objective='binary')
+
+# XGBoostモデルの定義
+xgb_model = xgb.XGBClassifier(objective='binary:logistic')
+
+# アンサンブル比率の範囲を定義
+ensemble_ratio_range = [0.1, 0.3, 0.5, 0.7, 0.9]
+
+# GridSearchCVの設定
+parameters = {'ensemble_ratio': ensemble_ratio_range}
+grid_search = GridSearchCV(estimator=lgb_model, param_grid=parameters, scoring='accuracy', cv=5)
+
+# GridSearchCVの実行
+grid_search.fit(X_train, y_train)
+
+# 最適なアンサンブル比率の取得
+best_ensemble_ratio = grid_search.best_params_['ensemble_ratio']
+
+# 最適なアンサンブルモデルの構築
+lgb_model.fit(X_train, y_train)
+xgb_model.fit(X_train, y_train)
+ensemble_pred = (best_ensemble_ratio * lgb_model.predict_proba(X_test)[:, 1]) + ((1 - best_ensemble_ratio) * xgb_model.predict_proba(X_test)[:, 1])
+ensemble_pred_binary = (ensemble_pred >= 0.5).astype(int)
+
+# テストデータの予測と結果の保存
+accuracy = accuracy_score(y_test, ensemble_pred_binary)
+print(f"Ensemble Accuracy: {accuracy}")
+
+
+###############################################################
+
+from sklearn.model_selection import GridSearchCV
 
 #LightGBMモデル(gbm3)を初期化します。
 gbm3 = lgb.LGBMClassifier(objective='binary')
