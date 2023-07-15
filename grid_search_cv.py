@@ -1,6 +1,7 @@
 
 ###############################################################
 
+from sklearn.ensemble import VotingClassifier
 from sklearn.model_selection import GridSearchCV
 import lightgbm as lgb
 import xgboost as xgb
@@ -15,9 +16,12 @@ xgb_model = xgb.XGBClassifier(objective='binary:logistic')
 # アンサンブル比率の範囲を定義
 ensemble_ratio_range = [0.1, 0.3, 0.5, 0.7, 0.9]
 
+# VotingClassifierでアンサンブルを作成
+voting_model = VotingClassifier(estimators=[('lgb', lgb_model), ('xgb', xgb_model)], voting='soft')
+
 # GridSearchCVの設定
 parameters = {'ensemble_ratio': ensemble_ratio_range}
-grid_search = GridSearchCV(estimator=lgb_model, param_grid=parameters, scoring='accuracy', cv=5)
+grid_search = GridSearchCV(estimator=voting_model, param_grid=parameters, scoring='accuracy', cv=5)
 
 # GridSearchCVの実行
 grid_search.fit(X_train, y_train)
@@ -34,7 +38,6 @@ ensemble_pred_binary = (ensemble_pred >= 0.5).astype(int)
 # テストデータの予測と結果の保存
 accuracy = accuracy_score(y_test, ensemble_pred_binary)
 print(f"Ensemble Accuracy: {accuracy}")
-
 
 ###############################################################
 
