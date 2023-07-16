@@ -19,5 +19,14 @@ background-color: #E0FFFF; font-size:100%; text-align:left">
 
 ########################
 
+# CSS style setting
+!wget http://bit.ly/3ZLyF82 -O CSS.css -q
+    
+from IPython.core.display import HTML
+with open('./CSS.css', 'r') as file:
+    custom_css = file.read()
+
+HTML(custom_css)
+
 ########################
 ########################
