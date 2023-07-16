@@ -12,6 +12,11 @@ background-color: #FFFAF0; font-size:100%; text-align:left">
 <h3 align="left"><font color='#DEB887'> xxxxx </font></h3>
 
 ########################
+
+<div style="border-radius:10px; border:#20B2AA solid; padding: 15px; 
+background-color: #E0FFFF; font-size:100%; text-align:left">
+<h3 align="left"><font color='#DEB887'> xxxxx </font></h3>
+
 ########################
 ########################
 ########################
