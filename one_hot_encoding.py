@@ -28,7 +28,7 @@ dataY = torch.eye(245)[dataY0]
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import MultiLabelBinarizer
 
-multilabel_cols = ["genres", ]#"producers", "licensors", "studios"
+multilabel_cols = ["genres", "producers", "licensors", "studios"]
 multilabel_dfs = []
 n_components=10
 for c in multilabel_cols:
