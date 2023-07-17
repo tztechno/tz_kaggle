@@ -1,17 +1,10 @@
 ###########################
 
-import pandas as pd
-
-# 列情報
-data = ['A', 'B', 'C']
-
-# データフレームの作成
-df = pd.DataFrame({'column': data})
-
-# ダミー変数の one-hot encoding を作成
-one_hot_encoding = pd.get_dummies(df['column'])
-
-print(one_hot_encoding)
+cols = list('ABCDE')
+df = train[['answer']]
+for col in cols:
+    df[col] = (df['answer'] == col).astype(int)
+display(df)
 
 ###########################
 # 列情報
