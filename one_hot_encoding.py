@@ -1,5 +1,37 @@
 ###########################
 
+import pandas as pd
+
+# 列情報
+data = ['A', 'B', 'C']
+
+# データフレームの作成
+df = pd.DataFrame({'column': data})
+
+# ダミー変数の one-hot encoding を作成
+one_hot_encoding = pd.get_dummies(df['column'])
+
+print(one_hot_encoding)
+
+###########################
+# 列情報
+data = 'ABC'
+
+# ユニークな要素のリストを作成
+unique_elements = list(set(data))
+
+# one-hot encoding のためのゼロで初期化された配列を作成
+one_hot_encoding = np.zeros((len(data), len(unique_elements)))
+
+# 各要素に対して one-hot encoding を適用
+for i, element in enumerate(data):
+    element_index = unique_elements.index(element)
+    one_hot_encoding[i, element_index] = 1
+
+print(one_hot_encoding)
+
+###########################
+
 import numpy as np
 
 categorical_data = np.array([1, 2, 3])
