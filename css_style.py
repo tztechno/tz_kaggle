@@ -12,6 +12,8 @@ https://github.com/JoseCaliz/dotfiles/blob/main/css/vs_gruvbox.css
 !wget https://raw.githubusercontent.com/JoseCaliz/dotfiles/main/css/monokai.css -O CSS.css -q
 !wget https://raw.githubusercontent.com/JoseCaliz/dotfiles/main/css/vs_monokai.css -O CSS.css -q
 
+!wget http://bit.ly/3ZLyF82 -O CSS.css -q
+    
 ################################
 
 !wget https://raw.githubusercontent.com/JoseCaliz/dotfiles/main/css/vs_monokai.css -O CSS.css -q
