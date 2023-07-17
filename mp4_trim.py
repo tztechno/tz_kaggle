@@ -10,3 +10,5 @@ start_time = 5  # トリミング開始時間（秒）
 end_time = 10   # トリミング終了時間（秒）
 
 trim_mp4(input_file, output_file, start_time, end_time)
+
+
