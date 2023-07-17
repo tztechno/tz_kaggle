@@ -5,3 +5,5 @@
 
 !yolo mode=track tracker="bytetrack.yaml" model=yolov8n.pt conf=0.25 source={input_video_path} save=True 
 
+
+
