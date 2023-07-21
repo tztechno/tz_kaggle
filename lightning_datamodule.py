@@ -34,7 +34,8 @@ class DataModule(pl.LightningDataModule):
 
     def train_dataloader(self):
         return self.train_dataset
-
+        
+    #val_dataloader necessary
     def val_dataloader(self):
         return self.test_dataset
 
