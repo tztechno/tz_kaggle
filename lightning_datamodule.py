@@ -113,14 +113,14 @@ class DataModule(pl.LightningDataModule):
         n_data = len(data)
         n_train = n_data*3//5
         n_valid = n_data//5
-      
-        train_indices = list(range(n_train))
-        valid_indices = list(range(n_train, n_train+n_valid))
-        test_indices = list(range(n_train+n_valid,n_data))
-        
+
         indices = list(range(n_data))
         random.shuffle(indices)          
-
+        
+        train_indices = indices[0:n_train]
+        valid_indices = indices[n_train:n_train+n_valid]
+        test_indices = indices[n_train+n_valid:]    
+        
         train_sampler = RandomSampler(train_indices)
         valid_sampler =RandomSampler(valid_indices)
         test_sampler = RandomSampler(test_indices)
