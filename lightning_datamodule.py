@@ -99,3 +99,44 @@ class DataModule(pl.LightningDataModule):
         return self.test_dataset
 
 ###################################################   
+
+class DataModule(pl.LightningDataModule):
+    
+    def __init__(self, transform=transform, batch_size=32):
+        super().__init__()
+        self.root_dir = "/kaggle/input/mango-ripening-stage-classification"
+        self.transform = transform
+        self.batch_size = batch_size
+
+    def setup(self, stage=None):
+        data = datasets.ImageFolder(root=self.root_dir, transform=self.transform)
+        n_data = len(data)
+        n_train = n_data*3//5
+        n_valid = n_data//5
+      
+        train_indices = list(range(n_train))
+        valid_indices = list(range(n_train, n_train+n_valid))
+        test_indices = list(range(n_train+n_valid,n_data))
+        
+        indices = list(range(n_data))
+        random.shuffle(indices)          
+
+        train_sampler = RandomSampler(train_indices)
+        valid_sampler =RandomSampler(valid_indices)
+        test_sampler = RandomSampler(test_indices)
+
+        self.train_dataset = DataLoader(data, sampler=train_sampler, batch_size=self.batch_size)
+        self.valid_dataset = DataLoader(data, sampler=valid_sampler, batch_size=self.batch_size)
+        self.test_dataset = DataLoader(data, sampler=test_sampler, batch_size=self.batch_size)
+
+        
+    def train_dataloader(self):
+        return self.train_dataset
+
+    def val_dataloader(self):
+        return self.test_dataset
+
+    def test_dataloader(self):
+        return self.test_dataset
+
+###################################################   
