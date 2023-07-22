@@ -1,6 +1,14 @@
 
 ######################################
 
+fig,ax = plt.subplots(figsize=(6,6))
+ax.set_title(target[i],fontsize=20)
+ax.set_ylabel('Train Predicted '+target[i],fontsize=12)
+ax.set_xlabel('Train Actual '+target[i],fontsize=12)
+ax.scatter(y,oof)
+
+######################################
+
 m=len(masks1)//4
 print(len(masks1))
 fig, axs = plt.subplots(m+1,4, figsize=(8,m*2))
