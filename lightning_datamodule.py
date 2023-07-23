@@ -104,32 +104,28 @@ class DataModule(pl.LightningDataModule):
     
     def __init__(self, transform=transform, batch_size=32):
         super().__init__()
-        self.root_dir = "/kaggle/input/mango-ripening-stage-classification"
+        self.root_dir = "datasets"
         self.transform = transform
         self.batch_size = batch_size
 
     def setup(self, stage=None):
         data = datasets.ImageFolder(root=self.root_dir, transform=self.transform)
         n_data = len(data)
+        print(n_data)
         n_train = n_data*3//5
         n_valid = n_data//5
 
         indices = list(range(n_data))
-        random.shuffle(indices)          
+        random.shuffle(indices)  
         
         train_indices = indices[0:n_train]
         valid_indices = indices[n_train:n_train+n_valid]
-        test_indices = indices[n_train+n_valid:]    
-        
-        train_sampler = RandomSampler(train_indices)
-        valid_sampler =RandomSampler(valid_indices)
-        test_sampler = RandomSampler(test_indices)
+        test_indices = indices[n_train+n_valid:]      
 
-        self.train_dataset = DataLoader(data, sampler=train_sampler, batch_size=self.batch_size)
-        self.valid_dataset = DataLoader(data, sampler=valid_sampler, batch_size=self.batch_size)
-        self.test_dataset = DataLoader(data, sampler=test_sampler, batch_size=self.batch_size)
+        self.train_dataset = DataLoader(data[train_indices], batch_size=self.batch_size)
+        self.valid_dataset = DataLoader(data[valid_indices], batch_size=self.batch_size)
+        self.test_dataset = DataLoader(data[test_indices], batch_size=self.batch_size)
 
-        
     def train_dataloader(self):
         return self.train_dataset
 
