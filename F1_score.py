@@ -1,3 +1,5 @@
+######################################################################
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -19,3 +21,22 @@ def F1_score(y_true, y_pred):
 
 f1_score = F1_score(y_true, y_pred)
 print("F1 score:", K.eval(f1_score))
+
+######################################################################
+
+def F1_score(y_true, y_pred):
+    true_positives = np.sum((y_true == y_pred) & (y_true == 1))
+    possible_positives = np.sum(y_true == 1)
+    predicted_positives = np.sum(y_pred == 1)
+    precision = true_positives / (predicted_positives + np.finfo(float).eps)
+    recall = true_positives / (possible_positives + np.finfo(float).eps)
+    f1_val = 2 * (precision * recall) / (precision + recall + np.finfo(float).eps)
+    return f1_val
+
+y_true = np.array([...])
+y_pred = np.array([...])
+
+f1_score = F1_score(y_true, y_pred)
+print("F1 score:", f1_score)
+
+######################################################################
