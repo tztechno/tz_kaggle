@@ -122,9 +122,9 @@ class DataModule(pl.LightningDataModule):
         valid_indices = indices[n_train:n_train+n_valid]
         test_indices = indices[n_train+n_valid:]      
 
-        self.train_dataset = DataLoader(data[train_indices], batch_size=self.batch_size)
-        self.valid_dataset = DataLoader(data[valid_indices], batch_size=self.batch_size)
-        self.test_dataset = DataLoader(data[test_indices], batch_size=self.batch_size)
+        self.train_dataset = DataLoader(Subset(data, train_indices), batch_size=self.batch_size)
+        self.valid_dataset = DataLoader(Subset(data, valid_indices), batch_size=self.batch_size)
+        self.test_dataset = DataLoader(Subset(data, test_indices), batch_size=self.batch_size)
 
     def train_dataloader(self):
         return self.train_dataset
