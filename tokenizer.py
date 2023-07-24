@@ -54,5 +54,9 @@ def create_data(text):
     return {"input_ids": input_ids, "attention_masks": attention_masks}
 
 train_data = create_data(train_df['text'][0:10])
-  
+train_data['input_ids'].shape
+train_data['attention_masks'].shape
+
+#128(max_len)次元のベクトルになる
+
 #########################################################  
