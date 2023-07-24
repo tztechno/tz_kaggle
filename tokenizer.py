@@ -1,4 +1,3 @@
-  
 #########################################################
 
 def create_data(text):
@@ -28,5 +27,32 @@ attention_masksは、モデルが注意を払うべきトークンを示すバ�
 つまり、パディングされたトークン（テキストの短いシーケンスを最大長に拡張するために追加されたトークン）は、
 モデルが無視する必要があるため、0でマスクされます。一方、元のテキストに含まれるトークンは、1でマスクされます。
   
+#########################################################  
 
+import tensorflow as tf
+from tensorflow.keras.layers import Input, Dense
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+import transformers
+from transformers import BertTokenizer, TFBertModel
+transformers.logging.set_verbosity_error()
+
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased') #from huggingface bert-base-uncased 
+max_len = 128
+
+def create_data(text):
+    encoded = tokenizer.batch_encode_plus(
+        text,
+        add_special_tokens = True,
+        max_length= max_len,
+        padding='max_length',
+        truncation=True,
+        return_attention_mask=True)
+
+    input_ids       = np.array(encoded["input_ids"], dtype="int32")
+    attention_masks = np.array(encoded["attention_mask"], dtype="int32")
+
+    return {"input_ids": input_ids, "attention_masks": attention_masks}
+
+train_data = create_data(train_df['text'][0:10])
+  
 #########################################################  
