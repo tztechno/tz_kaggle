@@ -47,3 +47,34 @@ for train_index, test_index in gkf.split(X, y, groups):
     print("GroupKFold Score:", score)
 
 ######################################################
+# データを用意する（Xは特徴量行列、yは対応するラベル）
+
+from sklearn.model_selection import KFold
+kf = KFold(n_splits=k)  # kはフォールドの数
+for train_index, test_index in kf.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    
+
+from sklearn.model_selection import StratifiedKFold
+skf = StratifiedKFold(n_splits=k)  # kはフォールドの数
+for train_index, test_index in skf.split(X, y):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+
+from sklearn.model_selection import GroupKFold
+gkf = GroupKFold(n_splits=k)  # kはフォールドの数
+for train_index, test_index in gkf.split(X, y, groups):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+
+from sklearn.model_selection import StratifiedGroupKFold
+sgkf = StratifiedGroupKFold(n_splits=k)  # kはフォールドの数
+for train_index, test_index in sgkf.split(X, y, groups):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    
+######################################################
+
