@@ -23,3 +23,25 @@ output_dict (オプション): レポートを辞書形式で出力するかど�
 zero_division (オプション): 0で除算が発生した場合の動作を制御するための文字列または数値。
 '''                  
 ########################################
+
+from sklearn.metrics import classification_report
+from keras.utils import to_categorical
+
+val_predictions = model3.predict(val_ds)
+val_predicted_labels = np.argmax(val_predictions, axis=1)
+
+val_true_labels = []
+
+# Iterate through the dataset to extract the true labels
+for batch in val_ds:
+    _, labels = batch  # The first element of the batch is the input data, the second element is the labels
+    val_true_labels.extend(labels.numpy())  # Convert the labels tensor to a numpy array and add it to the list
+
+val_true_labels = np.array(val_true_labels)  # Convert to NumPy array if not already
+val_true_labels = to_categorical(val_true_labels)  # Convert to multilabel-indicator format
+
+report = classification_report(val_true_labels, val_predicted_labels)
+
+print(report)
+
+########################################
