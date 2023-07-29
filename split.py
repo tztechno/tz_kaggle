@@ -1,5 +1,6 @@
 
 ################################################################################
+from sklearn.model_selection import train_test_split
 
 trainval_ds = keras.utils.image_dataset_from_directory(
     directory ='/kaggle/input/rock-paper-scissor/rps/rps',
@@ -20,6 +21,7 @@ train_ds = tf.data.Dataset.from_tensor_slices((train_images, train_labels)).batc
 val_ds = tf.data.Dataset.from_tensor_slices((val_images, val_labels)).batch(16)
 
 ################################################################################
+from sklearn.model_selection import train_test_split
 
 data_list = list(data_ds.as_numpy_iterator())
 images = np.concatenate([data[0] for data in data_list])
