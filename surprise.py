@@ -1,6 +1,4 @@
-
-
-################################
+################################################################
 
 from surprise import Dataset
 from surprise import KNNBasic
@@ -16,8 +14,7 @@ algo = KNNBasic()
 trainset = data.build_full_trainset()  # トレーニングセットをSurpriseのTrainsetオブジェクトに変換
 algo.fit(trainset)
 
-
-################################
+################################################################
 
 from surprise.prediction_algorithms import (
     BaselineOnly,
@@ -32,4 +29,11 @@ from surprise.prediction_algorithms import (
     SVDpp,
 )
 
-################################
+################################################################
+
+algo = KNNBasic()
+
+# Run 5-fold cross-validation and print results.
+cross_validate(algo, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+
+################################################################
