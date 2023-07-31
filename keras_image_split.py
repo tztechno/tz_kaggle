@@ -1,3 +1,5 @@
+#####################################################
+
 import tensorflow as tf
 from tensorflow import keras
 
@@ -24,5 +26,8 @@ train_ds = tf.data.Dataset.from_tensor_slices((train_images, train_labels)).batc
 val_ds = tf.data.Dataset.from_tensor_slices((val_images, val_labels)).batch(16)
 test_ds = tf.data.Dataset.from_tensor_slices((test_images, test_labels)).batch(16)
 
+#####################################################
 
-print('len',len(train_ds),len(val_ds),len(test_ds))
+val_dataset, test_dataset = torch.utils.data.random_split(valtestset, [n_val, n_test])
+
+#####################################################
