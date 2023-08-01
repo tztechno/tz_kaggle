@@ -38,3 +38,18 @@ val_ds = tf.data.Dataset.from_tensor_slices((val_images, val_labels)).batch(16)
 test_ds = tf.data.Dataset.from_tensor_slices((test_images, test_labels)).batch(16)
 
 ################################################################################
+
+    def setup(self, stage=None):
+        dataset = datasets.ImageFolder(root=self.root_dir, transform=self.transform)
+        n_data = len(dataset)
+        n_train = int(0.6 * n_data)
+        n_valid = int(0.2 * n_data)
+        n_test = n_data - n_train - n_valid
+
+        train_dataset, val_dataset, test_dataset = torch.utils.data.random_split(dataset, [n_train, n_valid, n_test])
+
+        self.train_dataset = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
+        self.val_dataset = DataLoader(val_dataset, batch_size=self.batch_size)
+        self.test_dataset = DataLoader(test_dataset, batch_size=self.batch_size)
+        
+################################################################################
