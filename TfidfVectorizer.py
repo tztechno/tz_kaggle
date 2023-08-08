@@ -1,3 +1,4 @@
+#############################################
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # サンプルの文書データ
@@ -19,3 +20,19 @@ print(tfidf_matrix.toarray())
 
 # 特徴語（単語）のリストを表示
 print(vectorizer.get_feature_names_out())
+
+#############################################
+
+vectorizer = TfidfVectorizer():
+
+X_train_vect = vectorizer.fit_transform(X_train):
+
+# トレーニングデータのTF-IDFベクトルを生成します。
+
+X_test_vect = vectorizer.transform(X_test):
+
+# テストデータ（X_test）をTF-IDFベクトルに変換しています。
+# テストデータをトレーニングデータの変換に使わず、
+# トレーニングデータで学習したTF-IDF変換をそのまま使用します。
+
+#############################################
