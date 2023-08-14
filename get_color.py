@@ -1,3 +1,6 @@
+
+############################################################
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,3 +26,16 @@ for c in all_colors:
     plt.imshow([nc])
     plt.axis('off')
     plt.show()
+
+############################################################
+
+lower_color = (255, 0, 0)
+upper_color = (255, 0, 0)
+mask = cv2.inRange(image, lower_color, upper_color)
+focus = cv2.bitwise_and(image, image, mask=mask)
+plt.figure(figsize=(3,3))
+plt.imshow(focus)
+plt.axis('off')
+plt.show()
+
+############################################################
