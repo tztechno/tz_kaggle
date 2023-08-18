@@ -84,6 +84,7 @@ def dataset_to_data(dataset):
     return dataX, dataY
 
 ######################################################
+###PIL
 
 class ImageDataset(Dataset):
     def __init__(self, path_label, transform=None):
@@ -101,7 +102,28 @@ class ImageDataset(Dataset):
             img = self.transform(img)
 
         return img, label
-    
+
+######################################################
+###cv2
+
+class ImageDataset(Dataset):
+    def __init__(self, path_label, transform=None):
+        self.path_label = path_label
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.path_label)
+
+    def __getitem__(self, idx):
+        path, label = self.path_label[idx]
+        img = cv2.imread(path) 
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)     
+
+        if self.transform is not None:
+            img = self.transform(img)
+
+        return img, label
+
 ######################################################
 
 from torchvision.datasets import ImageFolder
