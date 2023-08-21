@@ -1,11 +1,13 @@
+import pyctcdecode
+import kenlm
+
 import typing as tp
 from typing import Any, Dict, List, Union
 
 from pathlib import Path
 from functools import partial
 from dataclasses import dataclass, field
-import pyctcdecode
-import kenlm
+
 from bnunicodenormalizer import Normalizer
 import cloudpickle as cpkl
 from peft import LoraConfig, PeftModel, LoraModel, LoraConfig, get_peft_model
