@@ -2,7 +2,7 @@ import pyctcdecode
 import kenlm
 
 import typing as tp
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pathlib import Path
 from functools import partial
@@ -18,7 +18,10 @@ from transformers import TrainerState, TrainerControl, TrainerCallback
 from transformers import WhisperFeatureExtractor
 from transformers import Wav2Vec2Processor, Wav2Vec2ProcessorWithLM, Wav2Vec2ForCTC
 
+import torchaudio
+import torchaudio.transforms as tat
 
+from sklearn.decomposition import PCA
 
 
 
