@@ -17,6 +17,7 @@ from transformers import TrainingArguments
 from transformers import TrainerState, TrainerControl, TrainerCallback
 from transformers import WhisperFeatureExtractor
 from transformers import Wav2Vec2Processor, Wav2Vec2ProcessorWithLM, Wav2Vec2ForCTC
+from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 import torchaudio
 import torchaudio.transforms as tat
