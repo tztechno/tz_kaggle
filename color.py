@@ -36,3 +36,28 @@ hexc=color_codes[int(datai.iloc[j,5])%len(color_codes)]
 c = tuple(int(hexc[i:i+2], 16) for i in (1, 3, 5))
 
 #############################################
+
+color_codes = [
+    '#FF0000',  # Red
+    '#FF4500',  # OrangeRed
+    '#FF8C00',  # DarkOrange
+    '#FFA500',  # Orange
+    '#FFD700',  # Gold
+    '#FFFF00',  # Yellow
+    '#ADFF2F',  # GreenYellow
+    '#7FFF00',  # Chartreuse
+    '#00FF00',  # Lime
+    '#00FA9A',  # MediumSpringGreen
+    '#00FFFF',  # Cyan
+    '#00BFFF',  # DeepSkyBlue
+    '#0000FF',  # Blue
+    '#8A2BE2'   # BlueViolet
+]
+colors=[]
+for c in color_codes:
+    colors += [tuple((int(c[1:3],16),int(c[3:5],16),int(c[5:7],16)))] 
+print(colors)
+#[(255, 0, 0), (255, 69, 0), (255, 140, 0), (255, 165, 0), (255, 215, 0), 
+#(255, 255, 0), (173, 255, 47), (127, 255, 0), (0, 255, 0), (0, 250, 154), 
+#(0, 255, 255), (0, 191, 255), (0, 0, 255), (138, 43, 226)]
+#############################################
