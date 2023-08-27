@@ -1,3 +1,17 @@
+####################################################
+
+from datetime import datetime
+
+# monthsの例（'1961_01'から'2025_12'までの文字列）
+months = ['1961_01', '1970_06', '1980_01', '1990_07', '2000_12', '2010_05', '2020_10']
+
+# 文字列をdatetimeオブジェクトに変換する
+datetime_objects = [datetime.strptime(month, '%Y_%m') for month in months]
+
+# "YYYY-MM" 形式の文字列に変換する
+formatted_months = [dt.strftime('%Y-%m') for dt in datetime_objects]
+
+print(formatted_months)
 
 ####################################################
 
