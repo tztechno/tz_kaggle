@@ -1,5 +1,13 @@
 ########################
 
+def split_data(n):
+        train_size = int(0.6 * n)
+        val_size = int(0.2 * n)
+        test_size = n - train_size - val_size
+        return train_size, val_size, test_size
+
+########################
+
 from sklearn.model_selection import train_test_split
 trainx, validx, trainy, validy = train_test_split(trainX, trainY, test_size=0.2, random_state=42)
 
