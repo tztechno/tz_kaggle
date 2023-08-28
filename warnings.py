@@ -9,5 +9,5 @@ warnings.filterwarnings("ignore", category=FutureWarning)  # shade is now deprec
 
 import warnings
 warnings.filterwarnings("ignore")
-
+warnings.simplefilter('ignore')
 ########################################
