@@ -15,8 +15,22 @@ def show_image(path):
 #####################################
 
 from PIL import Image
-
-img = Image.open("画像ファイルのパス")
+img = Image.open(path)
 img.show()
+
+#####################################
+
+from IPython.display import Image, display
+image_path = "/kaggle/input/animals10/raw-img/cavallo/OIP---MGqQIhmz3OEPYP-46_xwHaFj.jpeg"
+display(Image(filename=image_path))
+
+#####################################
+
+import matplotlib.pyplot as plt
+path= "/kaggle/input/animals10/raw-img/cavallo/OIP---MGqQIhmz3OEPYP-46_xwHaFj.jpeg"
+image = plt.imread(path)
+plt.imshow(image)
+plt.axis('off')
+plt.show()
 
 #####################################
