@@ -11,3 +11,4 @@ def video_2_frames(video_file=paths[0], image_dir='/kaggle/working/frame/', imag
         cv2.imwrite(image_dir+image_file % str(i).zfill(4), frame) 
         i += 1
     cap.release()
+    
