@@ -44,3 +44,7 @@ Why is it required to store embeddings?</p>
 
 ################################################
 
+%%HTML
+<h1>Hello, HTML in Jupyter!</h1>
+
+################################################
