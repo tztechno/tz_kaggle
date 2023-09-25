@@ -1,3 +1,28 @@
+
+##############################################
+
+from IPython.display import Image, Video
+from matplotlib.animation import FuncAnimation
+
+image_dir = '/kaggle/input/cars-video-object-tracking/images'
+image_files = [os.path.join(image_dir, f) for f in os.listdir(image_dir) if f.endswith('.PNG')]
+images = []
+for path in image_files:
+    image=plt.imread(path)
+    image=cv2.resize(image, dsize=None, fx=0.2, fy=0.2, interpolation=cv2.INTER_LINEAR)
+    #print(image.shape)
+    images+=[image]
+
+def update(frame):
+    plt.clf()
+    plt.imshow(images[frame])
+    plt.axis('off')
+
+ani = FuncAnimation(plt.gcf(), update, frames=len(images), interval=50)
+ani.save('detections0.gif', writer='pillow', fps=5)
+
+Image(open('./detections0.gif','rb').read())
+
 ##############################################
 
 def images_to_mp4(paths, output_path, fps=10):
