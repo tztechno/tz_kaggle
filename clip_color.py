@@ -38,7 +38,7 @@ imageR=cv2.cvtColor(imageB, cv2.COLOR_BGR2RGB)
 image1 = cv2.cvtColor(imageB[113:117,191:195], cv2.COLOR_BGR2RGB)
 cv2.rectangle(imageR,(191,113),(195,117), (255, 0, 0) ,1)
 plt.figure(figsize=(10,4))
-plt.imshow(imageRR)
+plt.imshow(imageR)
 #plt.axis('off')
 plt.show()
 
