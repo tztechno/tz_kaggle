@@ -60,4 +60,26 @@ print(colors)
 #[(255, 0, 0), (255, 69, 0), (255, 140, 0), (255, 165, 0), (255, 215, 0), 
 #(255, 255, 0), (173, 255, 47), (127, 255, 0), (0, 255, 0), (0, 250, 154), 
 #(0, 255, 255), (0, 191, 255), (0, 0, 255), (138, 43, 226)]
+
+#############################################
+#color bar, color circle
+
+lower_color = np.array(min_nc[0])  # lower RGB value
+upper_color = np.array(max_nc[0])  # upper RGB value
+
+# RGB variation
+color_variations = np.linspace(lower_color, upper_color,72)
+
+fig, ax = plt.subplots(figsize=(10,5))
+ax.imshow([color_variations.astype(int)])
+ax.axis('off')
+plt.show()
+
+fig, ax = plt.subplots(subplot_kw={'aspect': 'equal'})
+ax.pie([1] * len(color_variations), colors=color_variations/255, startangle=90, counterclock=False)
+ax.set_xlim(-1.1, 1.1)
+ax.set_ylim(-1.1, 1.1)
+ax.axis('off')
+plt.show()
+
 #############################################
