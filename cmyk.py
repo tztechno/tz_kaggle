@@ -21,5 +21,6 @@ cmyk_image.show()
 
 # CMYKデータをBGR形式に変換
 bgr_data = cv2.cvtColor(cmyk_data, cv2.COLOR_CMYK2BGR)
+rgb_data = cv2.cvtColor(bgr_data, cv2.COLOR_BGR2RGB)
 
 ############################################
