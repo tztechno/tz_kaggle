@@ -1,3 +1,6 @@
+
+############################################
+
 from PIL import Image
 import numpy as np
 
@@ -13,3 +16,10 @@ cmyk_image = Image.fromarray(cmyk_data, 'CMYK')
 
 # 画像を表示
 cmyk_image.show()
+
+############################################
+
+# CMYKデータをBGR形式に変換
+bgr_data = cv2.cvtColor(cmyk_data, cv2.COLOR_CMYK2BGR)
+
+############################################
