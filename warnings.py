@@ -11,3 +11,10 @@ warnings.filterwarnings("ignore")
 warnings.simplefilter('ignore')
 
 ########################################
+
+def warn(*args, **kwargs):
+    pass
+warnings.warn = warn
+warnings.filterwarnings('ignore')
+
+########################################
