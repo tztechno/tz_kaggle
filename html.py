@@ -48,3 +48,27 @@ Why is it required to store embeddings?</p>
 <h1>Hello, HTML in Jupyter!</h1>
 
 ################################################
+
+<style>
+  /* CSSを使用してh2要素の背景カラーと背景画像を設定 */
+  h2 {
+    background-color: #007bff; /* 背景カラーを設定 */
+    background-image: url('your-image.jpg'); /* 背景画像を設定 */
+    background-size: cover; /* 背景画像をカバーするように調整（任意） */
+    color: white; /* テキストの色を設定（任意） */
+  }
+</style>
+
+################################################
+
+<style>
+  /* CSSを使用してh2要素にグラデーションを適用 */
+  h2 {
+    background: linear-gradient(to right, #ffcc00, #ff6600);
+    /* グラデーションの開始色と終了色を指定します */
+    color: white; /* テキストの色を設定（任意） */
+  }
+</style>
+
+################################################
+
