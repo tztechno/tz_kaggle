@@ -1,4 +1,32 @@
 ###################################################
+#labelのないtestdataを扱う
+
+class CustomTestDataset(Dataset):
+    def __init__(self, transform=transform, batch_size=16):
+        self.root_dir =  "/kaggle/input/UBC-OCEAN/test_thumbnails"
+        self.transform = transform
+        self.image_files = os.listdir(self.root_dir)
+
+    def __len__(self):
+        return len(self.image_files)
+
+    def __getitem__(self, idx):
+        image_path = os.path.join(self.root_dir, self.image_files[idx])
+        image = Image.open(image_path)
+        if self.transform:
+            image = self.transform(image)
+        return image
+
+custom_test_dataset = CustomTestDataset()
+test_loader = DataLoader(custom_test_dataset, batch_size=16, shuffle=False)
+
+preds=[]
+for batch in test_loader:
+    pred = model(batch)
+    pred_np = pred.detach().numpy() 
+    preds+=[reverse_mapping[np.argmax(pred_np)]]
+
+###################################################
 
     def setup(self, stage=None):
         n_data = len(self.data_df)
