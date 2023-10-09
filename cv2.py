@@ -1,6 +1,10 @@
 ##################################################
 #RGBAの画像を保存する時、BGRAに変わるのを防止する
 
+img4 = cv2.cvtColor(img4, cv2.COLOR_BGR2RGBA)
+cv2.imwrite('electric_sign.png',img4)
+
+#動作不良...
 cv2.imwrite('electric_sign.png',img4, cv2.IMWRITE_COLOR_BGR2RGBA)
 
 ##################################################
