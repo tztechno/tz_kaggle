@@ -1,3 +1,5 @@
+######################################################
+
 def rgb_to_cmyk(r, g, b):
     # Normalize RGB values to the range [0, 1]
     r_normalized = r / 255.0
@@ -27,3 +29,26 @@ g = 0
 b = 0
 cmyk = rgb_to_cmyk(r, g, b)
 print("CMYK:", cmyk)
+
+
+######################################################
+
+
+def cmyk_to_rgb(c, m, y, k):
+    # Calculate the normalized RGB components
+    r = 255 * (1.0 - c) * (1.0 - k)
+    g = 255 * (1.0 - m) * (1.0 - k)
+    b = 255 * (1.0 - y) * (1.0 - k)
+
+    return int(r), int(g), int(b)
+
+# Example usage
+c = 0.0
+m = 1.0
+y = 1.0
+k = 0.0
+rgb = cmyk_to_rgb(c, m, y, k)
+print("RGB:", rgb)
+
+######################################################
+
