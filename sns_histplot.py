@@ -1,0 +1,25 @@
+print('left: train data, right: test data')
+fig, ax = plt.subplots(23,2,figsize=(20,180))
+plt.subplots_adjust(hspace=0.5) 
+plt.rcParams.update({'font.size':16})
+for i in tqdm(range(23)):
+    data = data.sort_values(by=cols[i]) 
+    sns.histplot(data[cols[i]], label=cols[i], ax=ax[i,0], color='C1', bins=40)
+    ax[i,0].set_xlabel(cols[i], size=16)
+    ax[i,0].set_ylabel('value', size=16)    
+    ax[i,0].tick_params(axis='x', labelrotation=45, size=16)
+    ax[i,0].tick_params(axis='y', size=16)     
+    ax[i,0].legend()
+    ax[i,0].grid()
+    
+    if i!=22:
+        test = test.sort_values(by=cols[i]) 
+        sns.histplot(test[cols[i]], label=cols[i], ax=ax[i,1], color='C1', bins=40)
+        ax[i,1].set_xlabel(cols[i], size=16)
+        ax[i,1].set_ylabel('value', size=16)    
+        ax[i,1].tick_params(axis='x', labelrotation=45, size=16)
+        ax[i,1].tick_params(axis='y', size=16)     
+        ax[i,1].legend()
+        ax[i,1].grid()
+        
+plt.show()
