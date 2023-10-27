@@ -1,4 +1,14 @@
 
+# when multiple conditions exist
+
+# good
+dataiii=dataii[(dataii['event']=='tackle')&(dataii['tackle']==1)]
+
+# bad
+dataiii=dataii[dataii['event']=='tackle][dataii['tackle']==1]
+
+###############################
+
 単純な比較:
 df.query("列名 > 5")
 
