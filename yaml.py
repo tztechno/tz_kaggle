@@ -17,8 +17,13 @@ with open('plate.yaml', 'w') as outfile:
 ########################################
 
 import yaml
-
 data = {"key1": "value1", "key2": "value2"}
-
 with open("data.yaml", "w") as yaml_file:
     yaml.dump(data, yaml_file)
+
+
+########################################
+
+import yaml
+with open("Best_trial.yaml", "w") as yaml_file:
+    yaml.dump(Best_trial, yaml_file)
