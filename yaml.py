@@ -21,6 +21,8 @@ data = {"key1": "value1", "key2": "value2"}
 with open("data.yaml", "w") as yaml_file:
     yaml.dump(data, yaml_file)
 
+with open("data.yaml", "r") as yaml_file:
+    loaded_data = yaml.safe_load(yaml_file)
 
 ########################################
 
