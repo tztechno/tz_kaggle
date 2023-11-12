@@ -1,3 +1,25 @@
+
+##############################################################
+
+def average_image(paths):
+    first_image = cv2.imread(paths[0])
+    height, width, layers = first_image.shape
+    total_image = np.zeros((height, width, layers), np.float)
+    for path in paths[1:]:
+        current_image = cv2.imread(path)
+        total_image = cv2.add(total_image, current_image.astype(np.float))
+    average_image = total_image / len(paths)
+    plt.title('average_image')
+    plt.imshow(average_image)
+    plt.axis('off')
+    plt.show()
+    cv2.imwrite(os.path.join(image_folder, "average_image.jpg"), average_image)
+
+average_image(paths)
+
+##############################################################
+
+
 import cv2
 import numpy as np
 import os
