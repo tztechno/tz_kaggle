@@ -40,6 +40,7 @@ def split_text(df):
     df1=df[['text1','target']]
     df2=df[['text2','target']]
     df1.columns=['text','target']
+    df2.columns=['text','target']
     df3=pd.concat([df1,df2],axis=0)
     return df3
 
