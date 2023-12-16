@@ -1,6 +1,16 @@
 
 ####################################  
 
+#save
+with open('clf.pkl', 'wb') as f:
+    pickle.dump(clf, f)    
+
+#load
+with open('clf.pkl', 'rb') as f:
+    clf = pickle.load(f)
+
+####################################  
+
 import pickle
 
 # 学習済みモデルの取得
