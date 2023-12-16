@@ -1,4 +1,26 @@
+
 ####################################  
+
+import pickle
+
+# 学習済みモデルの取得
+model = lgbm.LGBMClassifier()
+model.fit(X_train, y_train)
+
+# モデルの保存
+with open("model.pkl", "wb") as f:
+    pickle.dump(model, f)
+
+# 保存したモデルの読み込み
+with open("model.pkl", "rb") as f:
+    model = pickle.load(f)
+
+# モデルの予測
+y_pred = model.predict(X_test)
+
+
+####################################  
+
 #first time
 #clf = RandomForestRegressor()
 
