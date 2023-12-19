@@ -14,7 +14,6 @@ print(df)
 selected_columns = df[['name', 'age']]
 print(selected_columns)
 
-
 # データのフィルタリング
 filtered_data = df.filter(df['age'] > 30)
 print(filtered_data)
