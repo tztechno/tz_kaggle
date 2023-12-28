@@ -27,3 +27,52 @@ rp(['A', 'C', 'D', 'B'])
 #['A', 'B', 'C', 'D']
 
 
+
+########################################
+
+# approach1 for name2perm_map
+info=pd.read_csv('/kaggle/input/santa-2023/puzzle_info.csv')
+display(info)
+
+names=[]
+perms=[]
+dic=ast.literal_eval(info.iloc[0,1])
+df=pd.DataFrame(dic)
+n=len(df)
+N=list(range(n))
+cols=df.columns.tolist()
+
+for col in cols:
+    p=Permutation(df.loc[:,col].tolist())
+    rp=p**-1
+    df['-'+col]=rp(N)
+    perms+=[p,rp]
+    names+=[col,'-'+col]
+
+print(names)
+print(perms)
+
+name2perm_map=dict(zip(names,perms)) 
+print(name2perm_map)
+
+
+########################################
+
+# approach2 for name2perm_map
+df=pd.read_csv('/kaggle/input/santa-2023-create-permutation-and-mapping/cube_222.csv')
+display(df)
+names=df['move'].tolist()
+
+perms=[]
+for i in range(len(df)):
+    p=Permutation(ast.literal_eval(df.loc[i,'list']))
+    perms+=[p]
+    
+name2perm_map=dict(zip(names,perms)) 
+print(name2perm_map)
+
+
+
+########################################
+
+
