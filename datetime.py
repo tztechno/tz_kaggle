@@ -30,6 +30,17 @@ df["aired_end_date"] = df["aired"].apply(lambda x: pd.to_datetime(x.split("to")[
 
 ####################################################
 
+N=int(input())
+T=[]
+for i in range(N):
+  t_str=str(input())
+  date=t_str.split('T')[0].split('-')
+  time=t_str.split('T')[1].split(':')[0:2]
+  T+=[[int(date[0]),int(date[1]),int(date[2]),int(time[0]),int(time[1])],]
+print(T)
+
+####################################################
+
    # https://www.kaggle.com/code/lucasboesen/ensemble-cv-11-vs-lb-8-econ-data-google-trend
     df['date'] = pd.to_datetime(df['date'])
     df['month'] = df.date.dt.month.astype("int8")
