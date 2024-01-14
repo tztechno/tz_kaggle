@@ -11,6 +11,18 @@ with open('clf.pkl', 'rb') as f:
 
 ####################################  
 
+def pickle_dump(obj, path):
+    with open(path, mode="wb") as f:
+        dill.dump(obj, f, protocol=4)
+
+
+def pickle_load(path):
+    with open(path, mode="rb") as f:
+        data = dill.load(f)
+        return data
+
+####################################  
+
 import pickle
 
 # 学習済みモデルの取得
