@@ -6,10 +6,15 @@
 
 %%python
 
+%%script python
+  
 %%bash
 
+%%script bash
 
+%%time
 
+  
 
 
 
