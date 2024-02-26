@@ -57,3 +57,13 @@ data = pd.read_json(url)
 print(data)
 
 ##########################
+
+# Load the data
+file_path = '/kaggle/input/synthetic-student-profiles-dataset/student_profiles.jsonl'
+data = []
+with open(file_path, 'r') as file:
+    for line in file:
+        data.append(json.loads(line))
+df = pd.DataFrame(data)
+
+##########################
