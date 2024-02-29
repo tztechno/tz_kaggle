@@ -83,3 +83,22 @@ ax.axis('off')
 plt.show()
 
 #############################################
+
+def rgb_to_hex(rgb):
+    hex_color = "#{:02x}{:02x}{:02x}".format(rgb[0], rgb[1], rgb[2])
+    return hex_color
+
+#color palette
+cluster_centers=np.load('/kaggle/input/color-palette/standard_color14.npy')
+
+colors=[]
+for i in range(14):
+    rgb_tuple=tuple(cluster_centers[i%14])
+    colors+=[rgb_to_hex(rgb_tuple)]
+
+N=list(range(len(colors)))
+    
+normal_mapping=dict(zip(N,colors)) 
+print(normal_mapping)
+
+#############################################
