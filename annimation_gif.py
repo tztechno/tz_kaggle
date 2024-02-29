@@ -159,3 +159,13 @@ from IPython.display import Image
 Image(open(output_path, 'rb').read())
 
 ##############################################
+
+def create_animation_gif(image_paths, output_path, fps=10, loop=True):
+    images = []
+    for image_path in image_paths:
+        images.append(imageio.imread(image_path))
+    
+    imageio.mimsave(output_path, images, format='GIF', fps=fps, loop=loop)
+    print(f"Animation GIF saved at {output_path}")
+    
+##############################################
