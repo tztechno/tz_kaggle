@@ -69,3 +69,18 @@ import torch.multiprocessing as mp
 import torchaudio
 import torchaudio.transforms as tat
 
+
+# Data manipulation
+import polars as pl
+pd.set_option("display.max_columns", None)
+
+
+# Data visualization
+from skimpy import skim
+
+
+# Stats
+import statsmodels.api as sm
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+import pingouin as pg
+import ppscore as pps
