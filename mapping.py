@@ -1,3 +1,9 @@
+
+################
+
+df['GENDER']=df['GENDER'].replace(['M', 'F'],[0,1])
+df['LUNG_CANCER']=df['LUNG_CANCER'].replace(['YES', 'NO'],[1,0])
+
 ################
 
 mapping_dict = movies.set_index("Movie_ID")["Name"].to_dict()
