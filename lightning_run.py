@@ -1,3 +1,5 @@
+https://www.kaggle.com/code/stpeteishii/brain-tumor-fit-predict-pytorch-lightning-cnn
+
 ################################
 [train,fit]
 
