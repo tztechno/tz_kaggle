@@ -1,3 +1,12 @@
+####################################  
+import pickle
+
+# save model
+with open('text_classification_model.pkl', 'wb') as f:
+    pickle.dump(pipeline, f)
+    
+# loading model
+model = pickle.load(open("text_classification_model.pkl", "rb"))
 
 ####################################  
 
