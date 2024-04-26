@@ -15,6 +15,15 @@ transform=transforms.Compose([
                              [0.229, 0.224, 0.225])
 ])
 
+---------------------------------------------------------------------
+
+Compose(
+    Resize(size=224, interpolation=bilinear, max_size=None, antialias=warn)
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)
+
 ######################################################################
 
 image_path='/kaggle/input/world-championship-2023-embryo-classification/hvwc23/test/D3_205.jpg'
