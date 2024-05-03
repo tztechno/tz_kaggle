@@ -23,4 +23,6 @@
 
 予測: モデルを使用して新しい画像に対する連続値を予測します。
 
+- no image folder用 の lightning model からの改造
+
 ---
