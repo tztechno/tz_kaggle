@@ -1,3 +1,6 @@
+
+#########################################
+
 import numpy as np
 
 def convert_to_int_with_range_limit(value, min_value, max_value):
@@ -8,7 +11,7 @@ def convert_to_int_with_range_limit(value, min_value, max_value):
 #########################################
 
 x = 101
-print(clip(x, 0, 100))
+print(np.clip(x, 0, 100))
 
 #########################################
 
