@@ -1,3 +1,5 @@
 #インスタンス一覧
 
-!du -h /path/to/directory | sort -rh
+!cat /proc/cpuinfo
+!cat /proc/meminfo
+!df -h
