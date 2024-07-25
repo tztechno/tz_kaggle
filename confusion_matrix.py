@@ -1,18 +1,10 @@
 
-def displayConfusionMatrix(y_true, y_pred, dataset):
-    disp = ConfusionMatrixDisplay.from_predictions(
-        y_true,
-        np.argmax(y_pred, axis=1),
-        display_labels=["Not Disaster","Disaster"],
-        cmap=plt.cm.Blues
-    )
 
-    tn, fp, fn, tp = confusion_matrix(y_true, np.argmax(y_pred, axis=1)).ravel()
-    f1_score = tp / (tp+((fn+fp)/2))
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-    disp.ax_.set_title("Confusion Matrix on " + dataset + " Dataset -- F1 Score: " + str(f1_score.round(2)))
+cm = confusion_matrix(y_test, y_pred)
 
-
-y_pred_train = classifier.predict(X_train)
-
-displayConfusionMatrix(y_train, y_pred_train, "Training")
+# Display the confusion matrix
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=data.target_names)
+disp.plot(cmap=plt.cm.Blues)
+plt.show()
