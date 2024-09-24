@@ -40,3 +40,34 @@ for tag in tags:
         print(f"Error downloading image from '{image_url}': {e}")
 
 ######################################################
+
+from bs4 import BeautifulSoup
+import requests
+import urllib.request
+import pandas as pd
+import numpy as np
+import os
+
+######################################################
+
+url = 'https://www.youtube.com/watch?v=5maOGFpd454'
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# タイトルタグを取得
+title = soup.find('meta', property='og:title')['content']
+print(title)
+
+
+######################################################
+
+url = 'https://www.youtube.com/watch?v=5maOGFpd454'
+source = urllib.request.urlopen(url)
+soup = BeautifulSoup(source,'lxml')
+
+title = soup.find('meta', property='og:title')['content']
+print(title)
+
+
+######################################################
+
