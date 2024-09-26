@@ -19,3 +19,12 @@ while True:
     print(f"Current memory usage: {get_memory_usage():.2f} GB")
 
 ------------------------------------------
+
+!pip install psutil
+import os
+import psutil
+print("psutil imported successfully")
+process = psutil.Process(os.getpid())
+print(f"Memory usage: {process.memory_info().rss / 1024 ** 2:.2f} MB")
+
+------------------------------------------
