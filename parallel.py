@@ -8,9 +8,19 @@ def heavy_computation(x):
 
 # 複数の入力値に対して、関数を並列実行
 results = Parallel(n_jobs=4)(delayed(heavy_computation)(i) for i in range(10))
-
 print(results)
 
+----------------------------
+tasks = [delayed(heavy_computation)(i) for i in range(10)]
+results = Parallel(n_jobs=4)(tasks)
+print(results)
+----------------------------
+tasks=[]
+for i in range(10):
+    tasks.append(delayed(heavy_computation)(i))
+results = Parallel(n_jobs=4)(tasks)
+print(results)
+----------------------------
 #############################################################
 
 
