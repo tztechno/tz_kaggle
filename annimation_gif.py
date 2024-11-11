@@ -169,3 +169,18 @@ def create_animation_gif(image_paths, output_path, fps=10, loop=True):
     print(f"Animation GIF saved at {output_path}")
     
 ##############################################
+
+from PIL import Image
+frames = [Image.fromarray(frame) for frame in framesA]
+frames[0].save(
+    "animation.gif",
+    save_all=True,
+    append_images=frames[1:],  
+    duration=200,              
+    loop=0             
+)
+output_path="animation.gif"
+
+from IPython.display import Image
+Image(open(output_path, 'rb').read())
+
