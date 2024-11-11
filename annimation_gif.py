@@ -184,3 +184,4 @@ output_path="animation.gif"
 from IPython.display import Image
 Image(open(output_path, 'rb').read())
 
+##############################################
