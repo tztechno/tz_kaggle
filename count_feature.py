@@ -25,3 +25,8 @@ def create_count_feature_test(input_df, mappings):
         output_df[f"{c}_count"] = input_df[c].map(mappings[c]).fillna(0)
 
     return output_df
+
+trainadd,mappings=create_count_feature_train(train0)
+train=pd.concat([train0,trainadd],axis=1)
+testadd=create_count_feature_test(test0,mappings)
+test=pd.concat([test0,testadd],axis=1)
