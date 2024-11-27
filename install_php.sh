@@ -1,4 +1,5 @@
-
+----------------------------------------------------------------
+# include library for scraping in php
 
 !apt-get update && apt-get install -y php php-curl php-xml unzip
 
@@ -10,3 +11,4 @@
 !echo '{"require": {"fabpot/goutte": "^4.0"}}' > composer.json
 !composer install
 
+----------------------------------------------------------------
