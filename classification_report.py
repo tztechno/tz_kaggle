@@ -6,6 +6,29 @@ print(classification_report(y_true, y_pred, target_names=class_names, digits=4))
 
 ########################################
 
+from collections import Counter
+
+class_counts = Counter(y_true)
+
+sorted_counts = sorted(class_counts.items(), key=lambda x: x[1])
+for cls, count in sorted_counts:
+    print(f"Class {cls}: {count} samples")
+
+threshold = 8
+
+valid_classes = {cls for cls, count in class_counts.items() if count >= threshold}
+
+filtered_y_true = [y for y in y_true if y in valid_classes]
+filtered_y_pred = [y for y, t in zip(y_pred, y_true) if t in valid_classes]  
+
+filtered_labels = sorted(valid_classes)
+filtered_class_names = [class_names[i] for i in filtered_labels]
+
+print(classification_report(filtered_y_true, filtered_y_pred, labels=filtered_labels, target_names=filtered_class_names, digits=4))
+#print(classification_report(y_true,y_pred,target_names=class_names,digits=4))
+
+########################################
+
 from sklearn.metrics import classification_report
 
 classification_report(y_true, y_pred, 
