@@ -1,3 +1,10 @@
+###########################################
+
+#### after pip download ultralytics
+
+import sys
+sys.path.append('/kaggle/input/pip-download-ultralytics')
+!pip install /kaggle/input/your-dataset-name/ultralytics-*.whl
 
 ###########################################
 
