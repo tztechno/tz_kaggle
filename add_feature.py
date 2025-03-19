@@ -1,5 +1,63 @@
 
 #####################################################
+
+
+def categorize_data_train_test(train, test, column_name, n_categories=5):
+    """
+    トレーニングデータに基づいてカテゴリ境界を決め、テストデータにも同じ境界を適用する関数。
+    
+    Parameters:
+    - train: pandas DataFrame (トレーニングデータ)
+    - test: pandas DataFrame (テストデータ)
+    - column_name: 数値データの列名
+    - n_categories: カテゴリー数（デフォルトは5）
+    
+    Returns:
+    - train: カテゴリを追加したトレーニングデータ
+    - test: カテゴリを追加したテストデータ
+    """
+    # トレーニングデータの最小値と最大値を取得
+    min_value = train[column_name].min()
+    max_value = train[column_name].max()
+
+    # 境界値を等間隔で設定
+    bins = np.linspace(min_value, max_value, n_categories + 1)
+
+    # トレーニングデータをカテゴリに変換
+    train[column_name + '_category'] = np.digitize(train[column_name], bins, right=True)
+
+    # テストデータにも同じ境界を適用
+    test[column_name + '_category'] = np.digitize(test[column_name], bins, right=True)
+    
+    return train, test
+def categorize_data_train_test(train, test, column_name, n_categories=5):
+    """
+    トレーニングデータに基づいてカテゴリ境界を決め、テストデータにも同じ境界を適用する関数。
+    
+    Parameters:
+    - train: pandas DataFrame (トレーニングデータ)
+    - test: pandas DataFrame (テストデータ)
+    - column_name: 数値データの列名
+    - n_categories: カテゴリー数（デフォルトは5）
+    
+    Returns:
+    - train: カテゴリを追加したトレーニングデータ
+    - test: カテゴリを追加したテストデータ
+    """
+    # トレーニングデータの最小値と最大値を取得
+    min_value = train[column_name].min()
+    max_value = train[column_name].max()
+
+    # 境界値を等間隔で設定
+    bins = np.linspace(min_value, max_value, n_categories + 1)
+
+    # トレーニングデータをカテゴリに変換
+    train[column_name + '_category'] = np.digitize(train[column_name], bins, right=True)
+
+    # テストデータにも同じ境界を適用
+    test[column_name + '_category'] = np.digitize(test[column_name], bins, right=True)
+    
+    return train, test
 #####################################################
 
 def categorize_data(df, column_name, n_categories=5):
