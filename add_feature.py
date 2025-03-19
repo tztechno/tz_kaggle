@@ -1,5 +1,32 @@
 
 #####################################################
+#####################################################
+
+def categorize_data(df, column_name, n_categories=5):
+    """
+    指定した列の数値データを最大最小を基にn段階にカテゴライズする関数。
+    
+    Parameters:
+    - df: pandas DataFrame
+    - column_name: 数値データの列名
+    - n_categories: カテゴリー数（デフォルトは5）
+    
+    Returns:
+    - df: カテゴリを追加したDataFrame
+    """
+    # 指定した列の最小値と最大値を取得
+    min_value = df[column_name].min()
+    max_value = df[column_name].max()
+
+    # 境界値を等間隔で設定
+    bins = np.linspace(min_value, max_value, n_categories + 1)
+
+    # データをカテゴリに変換
+    df[column_name + '_category'] = np.digitize(df[column_name], bins, right=True)
+    
+    return df
+
+#####################################################
 
 import itertools
 import pandas as pd
