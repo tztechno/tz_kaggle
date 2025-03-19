@@ -1,3 +1,73 @@
+
+#####################################################
+
+import itertools
+import pandas as pd
+
+def create_combined_features(df, columns):
+    """
+    df: pandas DataFrame
+    columns: list of column names that contain categorical data
+    
+    Returns a DataFrame with new combined features from the specified columns.
+    """
+    combined_features = []
+    
+    # Iterate through all pairs of columns
+    for col1, col2 in itertools.combinations(columns, 2):
+        # Create combined feature by concatenating values of two columns
+        new_feature = df[col1].astype(str) + "_" + df[col2].astype(str)
+        combined_features.append(new_feature)
+    
+    # Combine all the new features into the original dataframe
+    df_combined = pd.concat([df] + combined_features, axis=1)
+    
+    return df_combinedimport itertools
+import pandas as pd
+
+def create_combined_features(df, columns):
+    """
+    df: pandas DataFrame
+    columns: list of column names that contain categorical data
+    
+    Returns a DataFrame with new combined features from the specified columns.
+    """
+    combined_features = []
+    
+    # Iterate through all pairs of columns
+    for col1, col2 in itertools.combinations(columns, 2):
+        # Create combined feature by concatenating values of two columns
+        new_feature = df[col1].astype(str) + "_" + df[col2].astype(str)
+        combined_features.append(new_feature)
+    
+    # Combine all the new features into the original dataframe
+    df_combined = pd.concat([df] + combined_features, axis=1)
+    
+    return df_combined
+#####################################################
+
+from sklearn.preprocessing import OneHotEncoder
+
+def one_hot_encode(df, columns):
+    """
+    df: pandas DataFrame
+    columns: list of column names that contain categorical data
+    
+    Returns a DataFrame with One-Hot Encoding applied to the specified columns.
+    """
+    encoder = OneHotEncoder(sparse=False, drop='first')
+    one_hot_encoded = encoder.fit_transform(df[columns])
+    
+    # Create a DataFrame for the one-hot encoded columns
+    one_hot_df = pd.DataFrame(one_hot_encoded, columns=encoder.get_feature_names_out(columns))
+    
+    # Drop the original categorical columns and concatenate the one-hot encoded columns
+    df_encoded = pd.concat([df.drop(columns, axis=1), one_hot_df], axis=1)
+    
+    return df_encoded
+#####################################################
+
+
 #####################################################
 One-Hot Encoding の代替方法
 もし カテゴリが多い場合、以下のような代替エンコーディング方法を検討することもできます：
@@ -13,10 +83,6 @@ One-Hot Encoding の代替方法
 
 ハッシュエンコーディング (Hashing Encoding):
 カテゴリ数が非常に多い場合に、カテゴリを一定のハッシュ値にマッピングする方法です。これにより、メモリを節約できますが、ハッシュ衝突が起こる可能性があるため、注意が必要です。
-#####################################################
-------------------------------------------------
-#####################################################
-------------------------------------------------
 #####################################################
 この式は一般的ではない（カテゴリの組み合わせエンコーディングで、割り算を使う方法はほぼ見ない）。
 Label Encoding を使う方法は、ペア (c1, c2) の全組み合わせを個別にユニークな整数へ変換するため、衝突の心配がない。
