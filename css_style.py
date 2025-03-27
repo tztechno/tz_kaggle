@@ -1,3 +1,18 @@
+
+################################
+
+from IPython.display import display, HTML
+
+display(HTML('''
+<style>
+div.text_cell_render {
+    background-color: lightyellow;
+    padding: 20px;
+}
+</style>
+'''))
+
+
 ################################
 
 https://github.com/JoseCaliz/dotfiles/tree/main/css
