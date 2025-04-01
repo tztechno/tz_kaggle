@@ -1,4 +1,6 @@
 
+<div style="background-color: lightyellow; padding: 10px;">
+
 ################################
 
 from IPython.display import display, HTML
