@@ -1,5 +1,14 @@
 
 ######################################################
+
+torch.save(model.state_dict(), './custom_r1/model.pth')
+
+#how to load
+#new_model = DeepSeekV3ForCausalLM()
+#new_model.load_state_dict(torch.load('./custom_r1/model.pth', map_location='cpu'))
+
+
+######################################################
 [save as .pkl with fitted]
 
 import joblib
