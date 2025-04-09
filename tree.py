@@ -1,6 +1,26 @@
 
 ##################################################
 
+
+import os
+
+def print_directory_tree(start_path, prefix=""):
+    items = os.listdir(start_path)
+    items.sort()  # アルファベット順にソート
+    for index, item in enumerate(items):
+        path = os.path.join(start_path, item)
+        connector = "└── " if index == len(items) - 1 else "├── "
+        print(prefix + connector + item)
+        if os.path.isdir(path):
+            extension = "    " if index == len(items) - 1 else "│   "
+            print_directory_tree(path, prefix + extension)
+
+# 使用例：現在のフォルダを表示
+print_directory_tree(".")
+
+
+##################################################
+
 import os
 
 def tree(directory, level=0):
