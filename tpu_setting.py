@@ -1,5 +1,21 @@
 
 ##############################################
+!pip install torch-xla 
+
+# Try these methods to get TPU device information
+import torch_xla.core.xla_model as xm
+
+try:
+    # Method 1: Get XLA supported devices
+    ldevices = xm.get_xla_supported_devices()
+    print("XLA Supported Devices:", ldevices)
+    
+    # Method 2: Try to get device
+    device = xm.xla_device()
+    print("XLA Device:", device)
+except Exception as e:
+    print("Error getting TPU devices:", e)
+##############################################
 
 import tensorflow as tf
 
