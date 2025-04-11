@@ -1,4 +1,13 @@
 
+import wandb
+
+def auto_login_wandb():
+    wandb.login(key="YOUR_API_KEY")  
+
+auto_login_wandb()
+
+---------------------
+
 from kaggle_secrets import UserSecretsClient
 import wandb
 user_secrets = UserSecretsClient()
