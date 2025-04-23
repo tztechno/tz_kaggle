@@ -1,6 +1,24 @@
 
 ##################################################
 
+import lighteval
+import inspect
+
+def print_module_tree(module, indent=0):
+    prefix = " " * indent
+    print(f"{prefix}{module.__name__.split('.')[-1]}/")
+    members = inspect.getmembers(module)
+    for name, member in members:
+        if inspect.ismodule(member) and member.__name__.startswith(module.__name__):
+            print_module_tree(member, indent + 4)
+        elif inspect.isfunction(member) or inspect.isclass(member):
+            print(f"{' ' * (indent + 4)}{name}")
+
+print_module_tree(lighteval)
+
+##################################################
+
+
 
 import os
 
