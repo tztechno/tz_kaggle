@@ -1,14 +1,17 @@
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+import os
 import shutil
 from google.colab import files
 
-# 結果フォルダ名
-folder_path = 'results'
+folder_path = "data"
+zip_filename = "data.zip"
 
-# zipファイル名
-zip_filename = f'{folder_path}.zip'
+if os.path.exists(folder_path) and os.path.isdir(folder_path):
+    shutil.make_archive(folder_path, 'zip', folder_path)
+    files.download(zip_filename)
+else:
+    print(f"フォルダ '{folder_path}' が存在しません。")
 
-# フォルダをzip圧縮
-shutil.make_archive(folder_path, 'zip', folder_path)
-
-# zipファイルをダウンロード
-files.download(zip_filename)
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
