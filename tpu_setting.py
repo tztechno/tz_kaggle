@@ -1,5 +1,45 @@
 
+
 ##############################################
+
+import torch
+import torch_xla
+import torch_xla.core.xla_model as xm
+
+try:
+    if (xm.xla_device().type == 'xla'):
+        print("Yes XLA TPU :)")
+        print(f"Version of Python: {sys.version.split()[0]}")
+        print(f"Version of PyTorch: {torch.__version__}")
+        print(f"Version of XLA TPU: {torch_xla.__version__}")
+        print(f"# of XLA TPU Cores: {len(xm.get_xla_supported_devices())}")
+        print(f"Current Index of XLA TPU: {xm.xla_device()}")
+    else:
+        pass
+except:
+    print("No XLA TPU :(")
+
+
+try:
+    resolver = tf.distribute.cluster_resolver.TPUClusterResolver(tpu='local')
+    if not hasattr(tf.tpu, 'experimental') or not getattr(tf.tpu.experimental, '_tpu_initialized', False):
+        tf.config.experimental_connect_to_cluster(resolver)
+        tf.tpu.experimental.initialize_tpu_system(resolver)
+        setattr(tf.tpu.experimental, '_tpu_initialized', True)
+    if tf.config.list_physical_devices('TPU'):
+        print("Yes TPU :)")
+        print(f"Version of Python: {sys.version.split()[0]}")
+        print(f"Version of TensorFlow: {tf.__version__}")
+        print(f"# of TPU Cores: {len(tf.config.list_physical_devices('TPU'))}")
+        print(f"Current Device of TPU: {tf.config.list_logical_devices('TPU')[0].name}")
+    else:
+        pass
+except:
+    print("No TPU :(")
+
+
+##############################################
+
 !pip install torch-xla 
 
 # Try these methods to get TPU device information
@@ -15,6 +55,7 @@ try:
     print("XLA Device:", device)
 except Exception as e:
     print("Error getting TPU devices:", e)
+    
 ##############################################
 
 import tensorflow as tf
@@ -76,7 +117,6 @@ def get_strategy(device='TPU'):
 
 STRATEGY, N_REPLICAS, IS_TPU = get_strategy('TPU-VM')
 
-
 ##############################################
 
 import tensorflow as tf
@@ -89,6 +129,5 @@ try:
 except:
     strategy = tf.distribute.get_strategy()
 print('Number of replicas:', strategy.num_replicas_in_sync)
-
 
 ##############################################
