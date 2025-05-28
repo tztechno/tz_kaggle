@@ -1,3 +1,10 @@
+--------------------------------
+
+import sys
+sys.path.append('/kaggle/input/playgrounds5e3-public-imports-v1')
+import training
+
+--------------------------------
 
 exec( open(f"/kaggle/input/playgrounds5e3-public-imports-v1/training.py", "r").read() )
 
@@ -108,3 +115,5 @@ class HillClimber:
                 STOP = True
     
         return (current_best_ensemble, current_best_test_preds, Scores)
+        
+--------------------------------
