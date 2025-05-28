@@ -1,3 +1,24 @@
+##----------------------------------------------------------------------------------
+
+class LightCNNRegressor(LightningModule):
+    def __init__(self, input_dim):
+        super().__init__()
+        self.model = nn.Sequential(
+            nn.Unflatten(1, (1, input_dim)),  # (B, C, L) 形式に変換
+            nn.Conv1d(1, 16, kernel_size=3, padding=1),  # 32→16に削減
+            nn.ReLU(),
+            nn.MaxPool1d(2),
+            nn.Conv1d(16, 32, kernel_size=3, padding=1),  # 64→32に削減
+            nn.ReLU(),
+            nn.MaxPool1d(2),
+            nn.Flatten(),
+            nn.Linear(32 * (input_dim // 4), 10),  # 中間層も削減
+            nn.ReLU(),
+            nn.Linear(10, 1)
+        )
+
+##----------------------------------------------------------------------------------
+
 class CNNRegressor(LightningModule):
     def __init__(self, input_dim, input_channels=1):
         super().__init__()
@@ -55,3 +76,5 @@ class CNNRegressor(LightningModule):
         
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=0.001)
+
+##----------------------------------------------------------------------------------
