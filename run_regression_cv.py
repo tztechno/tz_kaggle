@@ -28,7 +28,6 @@ def run_regression_cv(trainX, trainY, testX, n_splits=5):
         # Model setup
         model = MLPRegressor(
             input_dim=X_train_tensor.shape[1], 
-            output_dim=1  # 回帰タスクなので出力は1次元
         )
         
         def fixed_compute_loss_and_metrics(self, batch):
@@ -36,7 +35,7 @@ def run_regression_cv(trainX, trainY, testX, n_splits=5):
             preds = self(x)
             loss = self.loss_fn(preds, y)
             
-            with torch.no_grad():  # メトリクス計算時に勾配追跡を防ぐ
+            with torch.no_grad():  
                 metrics = {
                     'mse': F.mse_loss(preds, y).item(),
                     'mae': F.l1_loss(preds, y).item(),
