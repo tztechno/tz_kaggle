@@ -1,4 +1,14 @@
 
+import imageio.v2 as imageio
+from pathlib import Path
+from IPython.display import Image as IPyImage, display
+from PIL import Image
+
+output_file = "animation.gif"
+imageio.mimsave(output_file, images, duration=0.2, loop=0)  
+
+display(IPyImage(filename=output_file))
+
 ---------------------------------------------
 
 from PIL import Image
