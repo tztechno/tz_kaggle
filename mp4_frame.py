@@ -5,6 +5,8 @@ ffmpeg -i input.mp4 -vf fps=30 frames/frame_%06d.png
 
 !ffmpeg -ss 0 -t 10 -i {path} images/frame_%06d.png
 
+!ffmpeg -i input.mp4 -vf "select='not(mod(n,5))',setpts=N/FRAME_RATE/TB" -vsync vfr frames/frame_%06d.png
+
 ================================================================================
 
 import cv2
