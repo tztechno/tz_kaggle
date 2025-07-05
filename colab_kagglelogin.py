@@ -1,3 +1,6 @@
+
+############################################
+
 # IMPORTANT: SOME KAGGLE DATA SOURCES ARE PRIVATE
 # RUN THIS CELL IN ORDER TO IMPORT YOUR KAGGLE DATA SOURCES.
 import kagglehub
@@ -15,3 +18,15 @@ kagglehub.login()
 stpeteishii_embedding_images_private_path = kagglehub.dataset_download('stpeteishii/embedding-images-private')
 
 print('Data source import complete.')
+
+############################################
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+# Drive から kaggle.json をコピー
+!mkdir -p ~/.kaggle
+!cp "/content/drive/MyDrive/kaggle/kaggle.json" ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+
+############################################
