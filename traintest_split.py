@@ -9,6 +9,10 @@ def split_data(n):
 ########################
 
 from sklearn.model_selection import train_test_split
+train, valid = train_test_split(data, test_size=0.2, random_state=42)
+
+########################
+from sklearn.model_selection import train_test_split
 trainx, validx, trainy, validy = train_test_split(trainX, trainY, test_size=0.2, random_state=42)
 
 ########################
