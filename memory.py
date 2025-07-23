@@ -42,4 +42,12 @@ print_memory()
 
 ------------------------------------------
 
+!cat /proc/meminfo | head -n 5  
+
+#MemTotal:       32873372 kB
+#MemFree:        30534464 kB
+#MemAvailable:   31577840 kB
+#Buffers:           71056 kB
+#Cached:          1113564 kB
+
 ------------------------------------------
