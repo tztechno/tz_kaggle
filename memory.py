@@ -6,17 +6,23 @@ gc.collect()
 
 ------------------------------------------
 
+!pip install psutil
+
 import psutil
-import os
 import time
 
-def get_memory_usage():
-    process = psutil.Process(os.getpid())
-    mem_info = process.memory_info()
-    return mem_info.rss / (1024 ** 3)  # Convert bytes to GB
-  
-while True:
-    print(f"Current memory usage: {get_memory_usage():.2f} GB")
+def watch_memory(interval=1.0, duration=30.0):
+    print(f"{'Time':>6} | {'Memory (MB)':>12}")
+    print("-" * 24)
+    start_time = time.time()
+    while time.time() - start_time < duration:
+        mem = psutil.Process().memory_info().rss / 1024**2  # in MB
+        elapsed = time.time() - start_time
+        print(f"{elapsed:6.1f} | {mem:12.2f}")
+        time.sleep(interval)
+
+# 30秒間、1秒ごとに監視
+watch_memory(interval=1.0, duration=30.0)
 
 ------------------------------------------
 
