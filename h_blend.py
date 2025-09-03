@@ -62,3 +62,39 @@ def h_blend(path, fs_names, params):
     return da
 
 -----------------------
+
+This is a Python function called `h_blend` that implements an ensemble method for combining multiple machine learning model predictions. Let me break down what it does:
+
+## Purpose
+The function blends multiple model submissions (predictions) using weighted averaging with directional sorting logic.
+
+## Key Components
+
+**Input Parameters:**
+- `path`: Directory path where CSV files are stored
+- `fs_names`: List of file names 
+- `params`: Dictionary containing configuration parameters
+
+**Main Logic:**
+1. **Loads multiple submissions**: Reads CSV files containing predictions from different models
+2. **Merges predictions**: Combines all model outputs based on an ID column
+3. **Applies weighted blending**: Uses two weighting schemes:
+   - Base weights for each model
+   - Correction weights based on model ranking performance
+4. **Directional ensembling**: Creates two versions:
+   - Descending sort-based blend
+   - Ascending sort-based blend
+5. **Final combination**: Blends the directional results using weighted coefficients
+
+## Issues in the Code
+There are several syntax errors that would prevent this from running:
+- `df*subms` should be `df_subms` (line appears twice)
+- `short*name_cols` should be `short_name_cols`
+- Malformed lambda function: `lambda *:*[1]` should be `lambda x: x[1]`
+
+## Use Case
+This appears to be designed for machine learning competitions (like Kaggle) where you want to combine predictions from multiple models to improve overall performance. The directional blending suggests it's optimized for ranking-based metrics where the order of predictions matters.
+
+The function outputs several CSV files with the blended predictions for further analysis or submission.
+
+------------------
