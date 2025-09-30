@@ -1,5 +1,14 @@
 ################################
 
+<div style="border:2px solid red; padding:10px; border-radius:5px; font-weight:bold;">
+
+  This whole text becomes bold automatically.
+  You don’t need ** to wrap each part.
+    
+</div>
+
+################################
+
 <div style="border: 2px solid red; padding:10px; border-radius:5px;">
   
 This cell content has a **red border** but transparent background.  
