@@ -1,3 +1,16 @@
+
+!wget https://moji.or.jp/wp-content/ipafont/IPAexfont/ipaexg00401.zip
+!unzip ipaexg00401.zip
+
+from matplotlib import font_manager, rcParams
+
+font_path = "ipaexg00401/ipaexg.ttf"
+font_manager.fontManager.addfont(font_path)
+rcParams["font.family"] = "IPAexGothic"
+rcParams["axes.unicode_minus"] = False
+
+---------------------------------------------------
+
 import matplotlib.pyplot as plt
 from matplotlib import font_manager, rcParams
 
